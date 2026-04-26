@@ -1,0 +1,10 @@
+{
+  "PO-2024-0422": {
+    "judgment": "suspicious",
+    "reason": "The unit price of $4.22 exceeds the market reference of $4.00, and the order quantity (10 units) is higher than typical historical orders for this SKU."
+  },
+  "PO-2024-0295": {
+    "judgment": "suspicious",
+    "reason": "The unit price is significantly higher than market reference and historical orders for the same SKU, with an unusually large quantity ordered."
+  }
+}

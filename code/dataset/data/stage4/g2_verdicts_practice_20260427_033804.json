@@ -1,0 +1,10 @@
+{
+  "PO-2024-0422": {
+    "judgment": "suspicious",
+    "reason": "The unit price is higher than market reference, quantity exceeds typical order size, and delivery lag is longer than standard lead time without justification in the purchase note."
+  },
+  "PO-2024-0295": {
+    "judgment": "suspicious",
+    "reason": "The unit price is significantly higher than market reference, the quantity is much larger than typical orders for this SKU, and the delivery lag exceeds the typical lead time."
+  }
+}

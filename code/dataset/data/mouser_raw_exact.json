@@ -1,0 +1,1033 @@
+{
+  "603-CFR-25JB-52-10K": {
+    "Availability": "60786 In Stock",
+    "DataSheetUrl": "https://www.mouser.com/datasheet/3/508/1/YAGEO_CFR_DATASHEET.pdf",
+    "Description": "Carbon Film Resistors - Through Hole 1/4W 10K Ohm 5%",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/yageo/images/ITP_CFR_t.jpg",
+    "Category": "Carbon Film Resistors - Through Hole",
+    "LeadTime": "126 Days",
+    "LifecycleStatus": null,
+    "Manufacturer": "YAGEO",
+    "ManufacturerPartNumber": "CFR-25JB-52-10K",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "603-CFR-25JB-52-10K",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "Bulk"
+      },
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "10000"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$0.10",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$0.034",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 25,
+        "Price": "$0.025",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$0.022",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 250,
+        "Price": "$0.019",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 500,
+        "Price": "$0.017",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 1000,
+        "Price": "$0.014",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 5000,
+        "Price": "$0.012",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10000,
+        "Price": "$0.011",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": [
+      {
+        "APMfrPN": "CFR-25JR-52-10K"
+      },
+      {
+        "APMfrPN": " CFR-25JT-52-10K"
+      }
+    ],
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/YAGEO/CFR-25JB-52-10K?qs=oypCK0zG32646UD7yHncYg%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "UnitWeightKg": {
+      "UnitWeight": 0.000230777
+    },
+    "AvailabilityInStock": "60786",
+    "AvailabilityOnOrder": [
+      {
+        "Quantity": 49426,
+        "Date": "2026-05-11T00:00:00"
+      },
+      {
+        "Quantity": 80000,
+        "Date": "2026-07-14T00:00:00"
+      }
+    ],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8533100000"
+      },
+      {
+        "ComplianceName": "TARIC",
+        "ComplianceValue": "8533100000"
+      },
+      {
+        "ComplianceName": "CAHTS",
+        "ComplianceValue": "8533100000"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "8533100065"
+      },
+      {
+        "ComplianceName": "JPHTS",
+        "ComplianceValue": "853310000"
+      },
+      {
+        "ComplianceName": "KRHTS",
+        "ComplianceValue": "8533100000"
+      },
+      {
+        "ComplianceName": "MXHTS",
+        "ComplianceValue": "8533100302"
+      },
+      {
+        "ComplianceName": "BRHTS",
+        "ComplianceValue": "85331000"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "EAR99"
+      }
+    ]
+  },
+  "81-GCM21BR71H104KA7L": {
+    "Availability": "58499 In Stock",
+    "DataSheetUrl": "",
+    "Description": "Multilayer Ceramic Capacitors MLCC - SMD/SMT 0.1 uF 50 VDC 10% 0805 X7R AEC-Q200",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/murata/images/GCM033D70E105ME36D_SPL.JPG",
+    "Category": "Multilayer Ceramic Capacitors MLCC - SMD/SMT",
+    "LeadTime": "114 Days",
+    "LifecycleStatus": "Not Recommended for New Designs",
+    "Manufacturer": "Murata Electronics",
+    "ManufacturerPartNumber": "GCM21BR71H104KA37L",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "81-GCM21BR71H104KA7L",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "Reel"
+      },
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "Cut Tape"
+      },
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "MouseReel",
+        "AttributeCost": "A MouseReel™ fee of $7.00 will be added and calculated in your basket. All MouseReel™ orders are non-cancellable and non-returnable."
+      },
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "3000"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$0.33",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$0.144",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$0.128",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 500,
+        "Price": "$0.099",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 1000,
+        "Price": "$0.092",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 3000,
+        "Price": "$0.073",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 6000,
+        "Price": "$0.071",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": [
+      {
+        "APMfrPN": "GCM21BR71H104KA37K"
+      }
+    ],
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/Murata-Electronics/GCM21BR71H104KA37L?qs=HH0X151LQklyB3m9dD31Bw%3D%3D",
+    "Reeling": true,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "81-GCM155R71H104KE2D",
+    "MultiSimBlue": 0,
+    "UnitWeightKg": {
+      "UnitWeight": 6.4e-06
+    },
+    "AvailabilityInStock": "58499",
+    "AvailabilityOnOrder": [],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8532241000"
+      },
+      {
+        "ComplianceName": "CAHTS",
+        "ComplianceValue": "8532240010"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "8532240020"
+      },
+      {
+        "ComplianceName": "JPHTS",
+        "ComplianceValue": "853224000"
+      },
+      {
+        "ComplianceName": "KRHTS",
+        "ComplianceValue": "8532240000"
+      },
+      {
+        "ComplianceName": "TARIC",
+        "ComplianceValue": "8532240000"
+      },
+      {
+        "ComplianceName": "MXHTS",
+        "ComplianceValue": "8532240400"
+      },
+      {
+        "ComplianceName": "BRHTS",
+        "ComplianceValue": "85322410"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "EAR99"
+      }
+    ]
+  },
+  "511-STM32F103C8T6": {
+    "Availability": "41 In Stock",
+    "DataSheetUrl": "",
+    "Description": "ARM Microcontrollers - MCU 32BIT Cortex M3 64KB 20KB RAM 2X12 ADC",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/mouserelectronics/images/LQFP_48_t.jpg",
+    "Category": "ARM Microcontrollers - MCU",
+    "LeadTime": "210 Days",
+    "LifecycleStatus": null,
+    "Manufacturer": "STMicroelectronics",
+    "ManufacturerPartNumber": "STM32F103C8T6",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "511-STM32F103C8T6",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "Tray"
+      },
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "1500"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$5.91",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$4.54",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 25,
+        "Price": "$4.19",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$3.81",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 250,
+        "Price": "$3.63",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 500,
+        "Price": "$3.52",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 1000,
+        "Price": "$3.34",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": [
+      {
+        "APMfrPN": "STM32F103C8T6TR"
+      }
+    ],
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/STMicroelectronics/STM32F103C8T6?qs=bhCVus9SdFtq6kqxsU5%2FDA%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "UnitWeightKg": {
+      "UnitWeight": 0.00018
+    },
+    "AvailabilityInStock": "41",
+    "AvailabilityOnOrder": [
+      {
+        "Quantity": 7500,
+        "Date": "2026-09-28T00:00:00"
+      },
+      {
+        "Quantity": 9000,
+        "Date": "2027-04-12T00:00:00"
+      }
+    ],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8542319092"
+      },
+      {
+        "ComplianceName": "CAHTS",
+        "ComplianceValue": "8542310000"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "8542310025"
+      },
+      {
+        "ComplianceName": "JPHTS",
+        "ComplianceValue": "8542310394"
+      },
+      {
+        "ComplianceName": "KRHTS",
+        "ComplianceValue": "8542311000"
+      },
+      {
+        "ComplianceName": "TARIC",
+        "ComplianceValue": "8542319000"
+      },
+      {
+        "ComplianceName": "MXHTS",
+        "ComplianceValue": "8542310399"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "3A991.a.2"
+      }
+    ]
+  },
+  "356-ESP32WRM32EN8R2": {
+    "Availability": "2355 In Stock",
+    "DataSheetUrl": "https://www.mouser.com/datasheet/3/1574/1/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf",
+    "Description": "Multiprotocol Modules ESP32-WROOM-32E integrates ESP32-D0WD-V3, with higher stability and safety performance.",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/espressifsystems/images/ESP32-WROOM-32E_SPL.jpg",
+    "Category": "Multiprotocol Modules",
+    "LeadTime": "120 Days",
+    "LifecycleStatus": null,
+    "Manufacturer": "Espressif Systems",
+    "ManufacturerPartNumber": "ESP32-WROOM-32E-N8R2",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "356-ESP32WRM32EN8R2",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "650"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$6.29",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$5.62",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 25,
+        "Price": "$4.41",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$4.28",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 250,
+        "Price": "$4.16",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 500,
+        "Price": "$3.73",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 1000,
+        "Price": "$3.52",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": null,
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/Espressif-Systems/ESP32-WROOM-32E-N8R2?qs=By6Nw2ByBD0mvGJSS3Ohlw%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "AvailabilityInStock": "2355",
+    "AvailabilityOnOrder": [
+      {
+        "Quantity": 3250,
+        "Date": "2026-04-29T00:00:00"
+      },
+      {
+        "Quantity": 1300,
+        "Date": "2026-06-15T00:00:00"
+      },
+      {
+        "Quantity": 1950,
+        "Date": "2026-06-22T00:00:00"
+      }
+    ],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8517629990"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "8517620090"
+      },
+      {
+        "ComplianceName": "JPHTS",
+        "ComplianceValue": "851762090"
+      },
+      {
+        "ComplianceName": "TARIC",
+        "ComplianceValue": "8517620000"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "5A992.C"
+      }
+    ]
+  },
+  "358-SC0915": {
+    "Availability": "7927 In Stock",
+    "DataSheetUrl": "https://www.mouser.com/datasheet/3/1088/1/RP_008307_DS_1_pico_datasheet.pdf",
+    "Description": "Single Board Computers Raspberry Pi Pico",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/raspberrypi/images/SC0915_SPL.jpg",
+    "Category": "Single Board Computers",
+    "LeadTime": "112 Days",
+    "LifecycleStatus": "New Product",
+    "Manufacturer": "Raspberry Pi",
+    "ManufacturerPartNumber": "SC0915",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "358-SC0915",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "2400"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$4.00",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": null,
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/Raspberry-Pi/SC0915?qs=T%252BzbugeAwjgnLi4azxXVFA%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "AvailabilityInStock": "7927",
+    "AvailabilityOnOrder": [],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8471504090"
+      },
+      {
+        "ComplianceName": "CAHTS",
+        "ComplianceValue": "8471500090"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "8471500150"
+      },
+      {
+        "ComplianceName": "JPHTS",
+        "ComplianceValue": "847150000"
+      },
+      {
+        "ComplianceName": "TARIC",
+        "ComplianceValue": "8471500000"
+      },
+      {
+        "ComplianceName": "MXHTS",
+        "ComplianceValue": "8471500100"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "5A992.C"
+      }
+    ]
+  },
+  "392-101262": {
+    "Availability": "10 In Stock",
+    "DataSheetUrl": "",
+    "Description": "Multiple Function Sensor Modules DHT22, temperature, humidity, sensor",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/soldered/images/101262_SPL.JPG",
+    "Category": "Multiple Function Sensor Modules",
+    "LeadTime": "38 Days",
+    "LifecycleStatus": "New Product",
+    "Manufacturer": "Soldered",
+    "ManufacturerPartNumber": "101262",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "392-101262",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "Bulk"
+      },
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "1"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$9.59",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$9.01",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 50,
+        "Price": "$8.53",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$8.15",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": null,
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/Soldered/101262?qs=%252BXxaIXUDbq3QgM3CAmZMnw%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "UnitWeightKg": {
+      "UnitWeight": 0.006
+    },
+    "AvailabilityInStock": "10",
+    "AvailabilityOnOrder": [],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "9025198085"
+      },
+      {
+        "ComplianceName": "TARIC",
+        "ComplianceValue": "9025190090"
+      },
+      {
+        "ComplianceName": "BRHTS",
+        "ComplianceValue": "90251990"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "EAR99"
+      }
+    ]
+  },
+  "485-4566": {
+    "Availability": "17 In Stock",
+    "DataSheetUrl": "",
+    "Description": "Temperature Sensor Development Tools Adafruit AHT20 - Temperature & Humidity Sensor Breakout Board - STEMMA QT / Qwiic",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/adafruit/images/4566_DSL.jpg",
+    "Category": "Temperature Sensor Development Tools",
+    "LeadTime": "90 Days",
+    "LifecycleStatus": null,
+    "Manufacturer": "Adafruit",
+    "ManufacturerPartNumber": "4566",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "485-4566",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "1"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$4.50",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": null,
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/Adafruit/4566?qs=W%2FMpXkg%252BdQ6Q0aDJcjnQrw%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "AvailabilityInStock": "17",
+    "AvailabilityOnOrder": [
+      {
+        "Quantity": 185,
+        "Date": "2026-06-11T00:00:00"
+      }
+    ],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8543909000"
+      },
+      {
+        "ComplianceName": "CAHTS",
+        "ComplianceValue": "9025800000"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "9025801000"
+      },
+      {
+        "ComplianceName": "JPHTS",
+        "ComplianceValue": "902580000"
+      },
+      {
+        "ComplianceName": "BRHTS",
+        "ComplianceValue": "90258000"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "EAR99"
+      }
+    ]
+  },
+  "262-BME280": {
+    "DataSheetUrl": "https://www.mouser.com/datasheet/3/1046/1/bst_bme280_ds002.pdf",
+    "Description": "Air Quality Sensors MEMS humidity, pressure and temperature sensor",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/boschsensortec/images/BME280_t.jpg",
+    "Category": "Air Quality Sensors",
+    "LeadTime": "84 Days",
+    "LifecycleStatus": null,
+    "Manufacturer": "Bosch Sensortec",
+    "ManufacturerPartNumber": "BME280",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "262-BME280",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "Reel"
+      },
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "Cut Tape"
+      },
+      {
+        "AttributeName": "Packaging",
+        "AttributeValue": "MouseReel",
+        "AttributeCost": "A MouseReel™ fee of $7.00 will be added and calculated in your basket. All MouseReel™ orders are non-cancellable and non-returnable."
+      },
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "10000"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$3.85",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 5,
+        "Price": "$3.45",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$3.30",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 25,
+        "Price": "$3.12",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 50,
+        "Price": "$3.00",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$2.89",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 500,
+        "Price": "$2.66",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 1000,
+        "Price": "$2.57",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 2500,
+        "Price": "$2.34",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10000,
+        "Price": "$2.34",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": null,
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/Bosch-Sensortec/BME280?qs=2OnyuXx6vpj2fK9HX7qb3g%3D%3D",
+    "Reeling": true,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "UnitWeightKg": {
+      "UnitWeight": 5.5e-05
+    },
+    "AvailabilityInStock": "0",
+    "AvailabilityOnOrder": [
+      {
+        "Quantity": 16558,
+        "Date": "2026-07-24T00:00:00"
+      },
+      {
+        "Quantity": 90000,
+        "Date": "2026-08-07T00:00:00"
+      },
+      {
+        "Quantity": 70000,
+        "Date": "2026-08-28T00:00:00"
+      }
+    ],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8542391090"
+      },
+      {
+        "ComplianceName": "CAHTS",
+        "ComplianceValue": "8542390000"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "8542390090"
+      },
+      {
+        "ComplianceName": "MXHTS",
+        "ComplianceValue": "8542399999"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "EAR99"
+      }
+    ]
+  },
+  "306-B4BXHAMLFSNP": {
+    "Availability": "2246 In Stock",
+    "DataSheetUrl": "https://www.mouser.com/datasheet/3/1070/1/eXH.pdf",
+    "Description": "Headers & Wire Housings XH HEADER (TOP)",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/jstcommercial/images/B10B-XH-A-series_SPL.jpg",
+    "Category": "Headers & Wire Housings",
+    "LeadTime": "112 Days",
+    "LifecycleStatus": null,
+    "Manufacturer": "JST Commercial",
+    "ManufacturerPartNumber": "B4B-XH-AM(LF)(SN)",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "306-B4BXHAMLFSNP",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "500"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$0.15",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$0.128",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$0.109",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 250,
+        "Price": "$0.098",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 1000,
+        "Price": "$0.092",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 5000,
+        "Price": "$0.082",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10000,
+        "Price": "$0.078",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": null,
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/JST-Commercial/B4B-XH-AMLFSN?qs=Oz4yqIfk2vK7%2FXbPo7CzKA%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "AvailabilityInStock": "2246",
+    "AvailabilityOnOrder": [
+      {
+        "Quantity": 6000,
+        "Date": "2026-07-28T00:00:00"
+      }
+    ],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "CNHTS",
+        "ComplianceValue": "8536901900"
+      },
+      {
+        "ComplianceName": "CAHTS",
+        "ComplianceValue": "8536690020"
+      },
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "8536694040"
+      },
+      {
+        "ComplianceName": "JPHTS",
+        "ComplianceValue": "853669000"
+      },
+      {
+        "ComplianceName": "KRHTS",
+        "ComplianceValue": "8536691000"
+      },
+      {
+        "ComplianceName": "TARIC",
+        "ComplianceValue": "8536693000"
+      },
+      {
+        "ComplianceName": "BRHTS",
+        "ComplianceValue": "85366990"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "EAR99"
+      }
+    ]
+  },
+  "590-588": {
+    "Availability": "2 In Stock",
+    "DataSheetUrl": "https://www.mouser.com/datasheet/3/293/1/tds_500_series.pdf",
+    "Description": "Copper Clad Boards SINGLE SIDED 6X9 COPPER CLAD 1/32in",
+    "FactoryStock": "0",
+    "ImagePath": "https://www.mouser.com/images/mgchemicals/images/588123_SPL.jpg",
+    "Category": "Copper Clad Boards",
+    "LeadTime": "23 Days",
+    "LifecycleStatus": null,
+    "Manufacturer": "MG Chemicals",
+    "ManufacturerPartNumber": "588",
+    "Min": "1",
+    "Mult": "1",
+    "MouserPartNumber": "590-588",
+    "ProductAttributes": [
+      {
+        "AttributeName": "Standard Pack Qty",
+        "AttributeValue": "5"
+      }
+    ],
+    "PriceBreaks": [
+      {
+        "Quantity": 1,
+        "Price": "$19.36",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 5,
+        "Price": "$16.84",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 10,
+        "Price": "$16.27",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 25,
+        "Price": "$15.34",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 50,
+        "Price": "$14.88",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 100,
+        "Price": "$13.95",
+        "Currency": "USD"
+      },
+      {
+        "Quantity": 250,
+        "Price": "$13.16",
+        "Currency": "USD"
+      }
+    ],
+    "AlternatePackagings": null,
+    "ProductDetailUrl": "https://www.mouser.hk/ProductDetail/MG-Chemicals/588?qs=nnh8%2FA0SuH9cgKPg9rnD%252Bg%3D%3D",
+    "Reeling": false,
+    "ROHSStatus": "RoHS Compliant",
+    "SuggestedReplacement": "",
+    "MultiSimBlue": 0,
+    "UnitWeightKg": {
+      "UnitWeight": 0.4535924
+    },
+    "AvailabilityInStock": "2",
+    "AvailabilityOnOrder": [
+      {
+        "Quantity": 25,
+        "Date": "2026-05-05T00:00:00"
+      }
+    ],
+    "InfoMessages": [],
+    "SurchargeMessages": null,
+    "ProductCompliance": [
+      {
+        "ComplianceName": "USHTS",
+        "ComplianceValue": "7410213020"
+      },
+      {
+        "ComplianceName": "ECCN",
+        "ComplianceValue": "EAR99"
+      }
+    ]
+  }
+}

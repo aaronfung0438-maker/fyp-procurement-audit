@@ -1,0 +1,30 @@
+[
+  {
+    "po_id": "PO-2024-0422",
+    "rag_retrieved": 5,
+    "rag_ms": 2967,
+    "g2_ok": true,
+    "g2_retries": 0,
+    "g2_ms": 21620,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 61340,
+    "shadow_g2_ok": true,
+    "shadow_g2_retries": 0,
+    "shadow_g2_ms": 18674
+  },
+  {
+    "po_id": "PO-2024-0295",
+    "rag_retrieved": 5,
+    "rag_ms": 3792,
+    "g2_ok": true,
+    "g2_retries": 0,
+    "g2_ms": 17807,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 40750,
+    "shadow_g2_ok": true,
+    "shadow_g2_retries": 0,
+    "shadow_g2_ms": 24706
+  }
+]

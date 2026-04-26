@@ -1,0 +1,58 @@
+{
+  "PO-2024-0422": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$4.2230",
+        "reference_value": "$4.0000",
+        "why_noteworthy": "Unit price exceeds market reference by 5.58%, within historical range."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "10",
+        "reference_value": "5",
+        "why_noteworthy": "Order quantity exceeds typical historical orders by 100%, suggesting bulk purchase."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "129 days",
+        "reference_value": "112 days",
+        "why_noteworthy": "Lead time exceeds market reference by 15%, longer than historical maximum."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "2.97 days",
+        "reference_value": "1.60-3.90 days",
+        "why_noteworthy": "Approval lag aligns with historical median for this requester's orders."
+      }
+    ]
+  },
+  "PO-2024-0295": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$5.3887",
+        "reference_value": "$4.4839",
+        "why_noteworthy": "Unit price exceeds market reference by over 20%, indicating potential overpayment."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "918",
+        "reference_value": "10",
+        "why_noteworthy": "Quantity is 91 times higher than typical historical orders for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "128 days",
+        "reference_value": "120 days",
+        "why_noteworthy": "Delivery lag exceeds market reference by 8 days, slightly longer than typical."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "0.11 days",
+        "reference_value": "1.80-3.78 days",
+        "why_noteworthy": "Approval lag is significantly shorter than historical range, suggesting expedited processing."
+      }
+    ]
+  }
+}
