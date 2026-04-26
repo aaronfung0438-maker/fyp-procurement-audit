@@ -83,12 +83,19 @@ def load_frozen_bundle() -> FrozenBundle:
 
 
 def truth_lookup(key_df: pd.DataFrame) -> dict[str, str]:
-    """Build {po_id: 'normal' | 'anomaly'} from a KEY dataframe.
+    """Build ``{po_id: 'normal' | 'anomaly'}`` from a KEY dataframe.
 
-    The KEY workbook is expected to expose the ground-truth label under a
-    column named ``truth_label`` or ``ground_truth``. Falls back to
-    ``is_injected`` (boolean) if neither is present.
+    Stage 3's prepare_stage3.py emits ``injection_plan`` with the value
+    ``"none"`` for normal orders and one of the 8 anomaly class names
+    otherwise; that is the canonical truth column. Earlier-named
+    columns (``truth_label`` / ``ground_truth`` / ``is_injected``) are
+    accepted as fallbacks for backwards compatibility.
     """
+    if "injection_plan" in key_df.columns:
+        return {
+            po: ("normal" if str(plan).strip().lower() == "none" else "anomaly")
+            for po, plan in zip(key_df["po_id"], key_df["injection_plan"])
+        }
     if "truth_label" in key_df.columns:
         return dict(zip(key_df["po_id"], key_df["truth_label"].str.lower()))
     if "ground_truth" in key_df.columns:
@@ -100,8 +107,23 @@ def truth_lookup(key_df: pd.DataFrame) -> dict[str, str]:
         }
     raise KeyError(
         "KEY dataframe is missing expected columns: "
-        "truth_label / ground_truth / is_injected"
+        "injection_plan / truth_label / ground_truth / is_injected"
     )
+
+
+def class_lookup(key_df: pd.DataFrame) -> dict[str, str]:
+    """Return ``{po_id: injection_plan}`` (multi-class label).
+
+    ``injection_plan`` is one of ``{"none", "item_spending", "border_value",
+    "unusual_vendor", "vendor_spending", "approval_bypass",
+    "quote_manipulation", "bank_account_change", "conflict_of_interest"}``.
+    """
+    if "injection_plan" not in key_df.columns:
+        raise KeyError("KEY dataframe is missing 'injection_plan'")
+    return {
+        po: str(plan).strip().lower()
+        for po, plan in zip(key_df["po_id"], key_df["injection_plan"])
+    }
 
 
 if __name__ == "__main__":
