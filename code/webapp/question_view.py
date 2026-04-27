@@ -20,25 +20,54 @@ import streamlit as st
 # ---------------------------------------------------------------------------
 
 
+def _g(row: pd.Series, key: str, default: Any = "—") -> Any:
+    """Safe getter — returns default if key missing or value is NaN."""
+    if key not in row.index:
+        return default
+    val = row[key]
+    try:
+        if pd.isna(val):
+            return default
+    except (TypeError, ValueError):
+        pass
+    return val
+
+
+def po_id_str(row: pd.Series) -> str:
+    """Return stripped po_id, or empty string if missing/invalid (for lookups / logging)."""
+    v = _g(row, "po_id", "")
+    if v in ("", "—", None):
+        return ""
+    s = str(v).strip()
+    if s.lower() in ("nan", "none", ""):
+        return ""
+    return s
+
+
 def render_section_a(row: pd.Series) -> None:
     """Section A — order details (deterministic facts)."""
     st.markdown("##### Section A — Order Details")
+
+    cat = _g(row, "item_category")
+    sku = _g(row, "item_sku")
+    item_str = f"{cat} · {sku}" if cat != "—" or sku != "—" else "—"
+
     cols = st.columns(2)
     left = {
-        "PO ID": row["po_id"],
-        "Item": f"{row['item_category']} · {row['item_sku']}",
-        "Description": row["item_description"],
-        "Quantity": int(row["quantity"]),
-        "Unit price (USD)": f"${row['unit_price_usd']:.4f}",
-        "Total amount (USD)": f"${row['total_amount_usd']:,.2f}",
+        "PO ID": _g(row, "po_id"),
+        "Item": item_str,
+        "Description": _g(row, "item_description"),
+        "Quantity": int(_g(row, "quantity", 0)) if _g(row, "quantity") != "—" else "—",
+        "Unit price (USD)": f"${float(_g(row, 'unit_price_usd', 0)):.4f}" if _g(row, "unit_price_usd") != "—" else "—",
+        "Total amount (USD)": f"${float(_g(row, 'total_amount_usd', 0)):,.2f}" if _g(row, "total_amount_usd") != "—" else "—",
     }
     right = {
-        "Requester": row["requester_id"],
-        "Approver": row["approver_id"],
-        "Supplier": row["supplier_id"],
-        "Created date": str(row["created_date"])[:10],
-        "Approval lag (days)": f"{row['approval_lag_days']:.2f}",
-        "Lead time (days)": int(row["expected_delivery_lag_days"]),
+        "Requester": _g(row, "requester_id"),
+        "Approver": _g(row, "approver_id"),
+        "Supplier": _g(row, "supplier_id"),
+        "Created date": str(_g(row, "created_date"))[:10],
+        "Approval lag (days)": f"{float(_g(row, 'approval_lag_days', 0)):.2f}" if _g(row, "approval_lag_days") != "—" else "—",
+        "Lead time (days)": int(_g(row, "expected_delivery_lag_days", 0)) if _g(row, "expected_delivery_lag_days") != "—" else "—",
     }
     with cols[0]:
         for k, v in left.items():
@@ -51,8 +80,18 @@ def render_section_a(row: pd.Series) -> None:
 def render_section_b(row: pd.Series) -> None:
     """Section B — free-text notes."""
     st.markdown("##### Section B — Free-text Notes")
-    st.markdown(f"**Purchase note:** {row['purchase_note_human']}")
-    st.markdown(f"**Supplier profile:** {row['supplier_profile_human']}")
+    st.markdown(f"**Purchase note:** {_g(row, 'purchase_note_human')}")
+    st.markdown(f"**Supplier profile:** {_g(row, 'supplier_profile_human')}")
+
+
+def _f(row: pd.Series, key: str) -> float | None:
+    val = _g(row, key, None)
+    if val is None or val == "—":
+        return None
+    try:
+        return float(val)
+    except (TypeError, ValueError):
+        return None
 
 
 def render_section_e(row: pd.Series) -> None:
@@ -66,39 +105,55 @@ def render_section_e(row: pd.Series) -> None:
 
     sentences: list[str] = []
 
-    sentences.append(
-        f"- **Unit price:** ${row['unit_price_usd']:.4f} "
-        f"(SKU historical median ${row['expected_unit_price_usd']:.4f}; "
-        f"ratio = {row['unit_price_ratio']:.2f}×)"
-    )
+    up = _f(row, "unit_price_usd")
+    upe = _f(row, "expected_unit_price_usd")
+    upr = _f(row, "unit_price_ratio")
+    if up is not None and upe is not None and upr is not None:
+        sentences.append(
+            f"- **Unit price:** ${up:.4f} (SKU historical median ${upe:.4f}; "
+            f"ratio = {upr:.2f}×)"
+        )
 
-    sentences.append(
-        f"- **Quantity:** {int(row['quantity'])} units "
-        f"(SKU historical median {int(row['expected_quantity'])}; "
-        f"ratio = {row['quantity_ratio']:.2f}×)"
-    )
+    qty = _f(row, "quantity")
+    qtye = _f(row, "expected_quantity")
+    qtyr = _f(row, "quantity_ratio")
+    if qty is not None and qtye is not None and qtyr is not None:
+        sentences.append(
+            f"- **Quantity:** {int(qty)} units (SKU historical median {int(qtye)}; "
+            f"ratio = {qtyr:.2f}×)"
+        )
 
-    sentences.append(
-        f"- **Lead time:** {int(row['expected_delivery_lag_days'])} days "
-        f"(typical mean {int(row['expected_delivery_lag_mean'])} ± "
-        f"{int(row['expected_delivery_lag_sigma'])} days; "
-        f"z = {row['delivery_lag_z']:+.2f})"
-    )
+    lead = _f(row, "expected_delivery_lag_days")
+    lm = _f(row, "expected_delivery_lag_mean")
+    ls = _f(row, "expected_delivery_lag_sigma")
+    lz = _f(row, "delivery_lag_z")
+    if lead is not None and lm is not None and ls is not None and lz is not None:
+        sentences.append(
+            f"- **Lead time:** {int(lead)} days (typical mean {int(lm)} ± "
+            f"{int(ls)} days; z = {lz:+.2f})"
+        )
 
-    sentences.append(
-        f"- **Approval lag:** {row['approval_lag_days']:.2f} days "
-        f"(z = {row['approval_lag_z']:+.2f} relative to this approver's "
-        f"typical pattern; log-z = {row['approval_lag_z_log']:+.2f})"
-    )
+    al = _f(row, "approval_lag_days")
+    az = _f(row, "approval_lag_z")
+    azl = _f(row, "approval_lag_z_log")
+    if al is not None and az is not None and azl is not None:
+        sentences.append(
+            f"- **Approval lag:** {al:.2f} days (z = {az:+.2f} relative to this "
+            f"approver's typical pattern; log-z = {azl:+.2f})"
+        )
 
-    gap = float(row["total_vs_approval_gap"])
-    sentences.append(
-        f"- **Threshold gap:** total ${row['total_amount_usd']:,.2f}, "
-        f"distance to nearest approval threshold = ${gap:+,.2f} "
-        f"(negative = below the threshold)"
-    )
+    total = _f(row, "total_amount_usd")
+    gap = _f(row, "total_vs_approval_gap")
+    if total is not None and gap is not None:
+        sentences.append(
+            f"- **Threshold gap:** total ${total:,.2f}, distance to nearest "
+            f"approval threshold = ${gap:+,.2f} (negative = below the threshold)"
+        )
 
-    st.markdown("\n".join(sentences))
+    if not sentences:
+        st.warning("Section E features unavailable for this order.")
+    else:
+        st.markdown("\n".join(sentences))
 
 
 # ---------------------------------------------------------------------------
@@ -159,6 +214,11 @@ def render_order(
     All three groups see Section A/B/E. Only G2 sees the verdict panel;
     only G3 sees the noteworthy-features table.
     """
+    pid = po_id_str(row)
+    if not pid:
+        st.error("This order row is missing a valid **po_id**; cannot display.")
+        return
+
     render_section_a(row)
     st.markdown("---")
     render_section_b(row)
@@ -167,7 +227,7 @@ def render_order(
 
     if group == "G2":
         st.markdown("---")
-        render_g2_panel(g2_lookup.get(row["po_id"]))
+        render_g2_panel(g2_lookup.get(pid))
     elif group == "G3":
         st.markdown("---")
-        render_g3_panel(g3_lookup.get(row["po_id"]))
+        render_g3_panel(g3_lookup.get(pid))

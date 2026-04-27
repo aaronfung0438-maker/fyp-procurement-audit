@@ -2,7 +2,8 @@
 
 State machine:
     LANDING -> BRIEFING -> BACKGROUND -> PRACTICE -> EXPERIMENT
-            -> TRUST_SURVEY (G2/G3 only) -> THANKS
+            -> TRUST_SURVEY (all groups; G1 uses Section E parallel
+               instrument, G2/G3 use AI instrument) -> THANKS
 
 Routing is handled exclusively through ``st.session_state['stage']`` so
 that browser back / sidebar navigation cannot bypass the controlled
@@ -20,7 +21,7 @@ from pathlib import Path
 import streamlit as st
 
 from data_loader import load_frozen_bundle, truth_lookup
-from question_view import render_order
+from question_view import po_id_str, render_order
 from sheets_backend import SheetsClient, from_streamlit_secrets
 from survey import LIKERT_LABELS, items_for_group
 
@@ -267,6 +268,10 @@ def render_practice() -> None:
         return
 
     row = pra_df.iloc[idx]
+    row_pid = po_id_str(row)
+    if not row_pid:
+        st.error("Order data is missing a valid **po_id**. Contact the researcher.")
+        return
     render_order(
         row,
         st.session_state["group"],
@@ -285,12 +290,12 @@ def render_practice() -> None:
     duration_ms = submit_ms - render_ts
 
     st.session_state[f"practice_decision_{idx}"] = {
-        "po_id": row["po_id"],
+        "po_id": row_pid,
         "judgment": judgment,
         "confidence": confidence,
         "rationale": rationale,
         "duration_ms": duration_ms,
-        "truth": pra_truth.get(row["po_id"], ""),
+        "truth": pra_truth.get(row_pid, ""),
     }
 
     _persist(
@@ -299,7 +304,7 @@ def render_practice() -> None:
             "group": st.session_state["group"],
             "phase": "practice",
             "question_idx": idx + 1,
-            "po_id": row["po_id"],
+            "po_id": row_pid,
             "render_ts": time.strftime(
                 "%Y-%m-%dT%H:%M:%S", time.localtime(render_ts / 1000)
             ),
@@ -309,7 +314,7 @@ def render_practice() -> None:
             "confidence": confidence,
             "rationale": rationale,
             "extra_json": json.dumps(
-                {"truth": pra_truth.get(row["po_id"], "")},
+                {"truth": pra_truth.get(row_pid, "")},
                 ensure_ascii=False,
             ),
         }
@@ -388,6 +393,10 @@ def render_experiment() -> None:
 
     row_pos = order[idx]
     row = exp_df.iloc[row_pos]
+    row_pid = po_id_str(row)
+    if not row_pid:
+        st.error("Order data is missing a valid **po_id**. Contact the researcher.")
+        return
     render_order(
         row,
         st.session_state["group"],
@@ -411,7 +420,7 @@ def render_experiment() -> None:
             "group": st.session_state["group"],
             "phase": "experiment",
             "question_idx": idx + 1,
-            "po_id": row["po_id"],
+            "po_id": row_pid,
             "render_ts": time.strftime(
                 "%Y-%m-%dT%H:%M:%S", time.localtime(render_ts / 1000)
             ),
@@ -433,7 +442,7 @@ def render_experiment() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Trust survey (G2 / G3 only)
+# Trust survey (all groups; G1 uses Section E parallel instrument)
 # ---------------------------------------------------------------------------
 
 

@@ -19,6 +19,14 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 STAGE3_DIR = REPO_ROOT / "code" / "dataset" / "data" / "stage3"
 STAGE4_DIR = REPO_ROOT / "code" / "dataset" / "data" / "stage4"
 
+
+def _normalize_po_id_key(po: object) -> str:
+    """String key for DataFrame/JSON order ids (empty if unusable)."""
+    s = str(po).strip()
+    if s.lower() in ("nan", "none", ""):
+        return ""
+    return s
+
 TS_RE = re.compile(r"(\d{8}_\d{6})")
 
 
@@ -54,6 +62,15 @@ def _read_json(path: Path) -> dict[str, Any]:
         return json.load(f)
 
 
+def _normalize_column_names(df: pd.DataFrame) -> pd.DataFrame:
+    """Strip whitespace on column names (Excel re-exports can add trailing spaces)."""
+    if df is None or df.empty:
+        return df
+    out = df.copy()
+    out.columns = [str(c).strip() for c in out.columns]
+    return out
+
+
 def load_frozen_bundle() -> FrozenBundle:
     """Resolve and load the most recent Stage 3 + Stage 4 artefacts."""
     exp_xlsx = _latest(list(STAGE3_DIR.glob("experiment_32qs_*.xlsx")))
@@ -71,10 +88,10 @@ def load_frozen_bundle() -> FrozenBundle:
 
     return FrozenBundle(
         timestamp=timestamp,
-        experiment_df=pd.read_excel(exp_xlsx),
-        practice_df=pd.read_excel(pra_xlsx),
-        experiment_key_df=pd.read_excel(exp_key),
-        practice_key_df=pd.read_excel(pra_key),
+        experiment_df=_normalize_column_names(pd.read_excel(exp_xlsx)),
+        practice_df=_normalize_column_names(pd.read_excel(pra_xlsx)),
+        experiment_key_df=_normalize_column_names(pd.read_excel(exp_key)),
+        practice_key_df=_normalize_column_names(pd.read_excel(pra_key)),
         g2_exp=_read_json(g2_exp_path),
         g3_exp=_read_json(g3_exp_path),
         g2_practice=_read_json(g2_pra_path),
@@ -93,17 +110,27 @@ def truth_lookup(key_df: pd.DataFrame) -> dict[str, str]:
     """
     if "injection_plan" in key_df.columns:
         return {
-            po: ("normal" if str(plan).strip().lower() == "none" else "anomaly")
+            k: ("normal" if str(plan).strip().lower() == "none" else "anomaly")
             for po, plan in zip(key_df["po_id"], key_df["injection_plan"])
+            if (k := _normalize_po_id_key(po))
         }
     if "truth_label" in key_df.columns:
-        return dict(zip(key_df["po_id"], key_df["truth_label"].str.lower()))
+        return {
+            k: str(lbl).strip().lower()
+            for po, lbl in zip(key_df["po_id"], key_df["truth_label"])
+            if (k := _normalize_po_id_key(po))
+        }
     if "ground_truth" in key_df.columns:
-        return dict(zip(key_df["po_id"], key_df["ground_truth"].str.lower()))
+        return {
+            k: str(lbl).strip().lower()
+            for po, lbl in zip(key_df["po_id"], key_df["ground_truth"])
+            if (k := _normalize_po_id_key(po))
+        }
     if "is_injected" in key_df.columns:
         return {
-            po: ("anomaly" if bool(flag) else "normal")
+            k: ("anomaly" if bool(flag) else "normal")
             for po, flag in zip(key_df["po_id"], key_df["is_injected"])
+            if (k := _normalize_po_id_key(po))
         }
     raise KeyError(
         "KEY dataframe is missing expected columns: "
@@ -121,8 +148,9 @@ def class_lookup(key_df: pd.DataFrame) -> dict[str, str]:
     if "injection_plan" not in key_df.columns:
         raise KeyError("KEY dataframe is missing 'injection_plan'")
     return {
-        po: str(plan).strip().lower()
+        k: str(plan).strip().lower()
         for po, plan in zip(key_df["po_id"], key_df["injection_plan"])
+        if (k := _normalize_po_id_key(po))
     }
 
 
