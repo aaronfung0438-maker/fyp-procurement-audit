@@ -24,7 +24,8 @@
 13. 如何閱讀 Excel 資料集
 14. 實驗分析計畫
 15. 限制與威脅
-16. 參考文獻
+16. LLM 合成受試者實驗（Computational Baseline）
+17. 參考文獻
 
 ---
 
@@ -507,6 +508,17 @@ ANOMALY_TARGETS = {
 ```
 
 ### 7.4 Ground Truth 的精確定義
+
+#### 概念定位：Ground truth = 我們以數學方式定義的「世界真相」
+
+本研究是合成資料集，因此「真相」並非從現實觀測取得，而是由 `generate_dataset.py` 在 Stage 1 注入時**以程式碼明確刻寫**的 8 類突變規則所決定。具體而言：
+
+- **真相 = Stage 1 突變過的訂單**：每一筆 `injection_plan != "none"` 的訂單，是我們「親手放進資料的密碼」（hidden rubric）。其精確內容由下方層次 3 列出的數學突變合約定義，沒有歧義、可重現、可審查。
+- **這正是受試者要找的 secret pattern**：人類受試者（G1）僅憑訂單欄位、文字描述、Section E 偏差句、加上 briefing 中的舞弊樣態知識，去推斷哪一筆「看起來不對」；G2 / G3 受試者則額外接收 AI 工具的輸出。**所有 tester（含合成 LLM tester）都看不到 `injection_plan` 欄位**——它純粹是評分時的對答案用。
+- **AI 工具與 ground truth 的關係**：Stage 4 AI 工具（G2 verdict / G3 features）也**不知道** `injection_plan`，它的輸入只有訂單欄位 + RAG 歷史相似訂單。因此 AI 的判斷品質本質上來自「能否從訂單表面偏差還原我們刻寫的突變規則」，與真人受試者的任務在資訊論意義下對齊。
+- **為何用程式碼定義真相而非人工標注**：(a) 完全可重現（同 seed 同結果）；(b) 不會有人類標注的主觀偏誤；(c) 細到每一筆異常都能精確說出「我們改了什麼」（見層次 3）；(d) 與 Section E 偏差特徵 / Mahalanobis 距離計算管線**完全解耦**（見 §7.2 第二段：分類法不重新實作為偵測器），避免循環評估。
+
+下方三個層次提供同一份真相的不同精度表示，分別供二元評估、類型分析、與每類細節重現使用。
 
 #### 層次 1：二元標籤
 
@@ -1276,7 +1288,127 @@ Section E 自然語言句子使用如「Unit price $8.90 vs SKU historical media
 
 ---
 
-## 16. 參考文獻
+## 16. LLM 合成受試者實驗（Computational Baseline）
+
+### 16.1 設計目的
+
+本研究在招募真人受試者的同時，額外以 Qwen3-8B（本機 Ollama）模擬 G1 / G2 / G3 三種條件下的採購審計決策，作為 **computational pilot baseline**。此設計的目的：
+
+- **(a) 比較 LLM 與真人受試者的決策差異**：在相同題目、相同 AI 輸出條件下，LLM 的準確率、AI 一致率是否與真人有系統性差距？
+- **(b) 提供 AI 輸出的「純理性基準」**：LLM 在 G2（看到結論）vs. G3（看到證據）條件下的 AI 一致率，代表一個「無情感/無認知偏誤」的理想受試者在相同 AI 資訊下會有多少自動化偏誤傾向。
+- **(c) 論文方法論透明度**：明確揭露模擬等級（demographic-only 等級），不誇大合成受試者的替代能力。
+
+#### 16.1.1 三類 artefact 的角色區分（briefing / AI / tester）
+
+本研究嚴格區分三種 LLM 相關 artefact，對應到不同實驗變項位置：
+
+| Artefact | 設計角色 | 實驗變項位置 |
+|---|---|---|
+| **Briefing**（`briefing_common.md` + `briefing_g{N}.md`）| 賦予所有 tester（真人或 LLM）相同背景知識：公司情境、8 大舞弊樣態、Section 說明、群組差異。設計上**不洩漏 ground truth**（如 supplier 慣例僅寫「S-001–025 是常規供應商，其他可能合法但值得注意」，不寫「S-026+ 一律異常」）。 | 控制變項（所有 cell 相同） |
+| **AI 工具**（Stage 4 凍結的 G2 verdict / G3 features）| 給定訂單資料 + RAG 歷史相似訂單，直接產生輸出。**不對 prompt 工藝最佳化、不額外灌輸公司術語表**——刻意定位為 simple AI baseline。 | 自變項（G1 = 無、G2 = verdict、G3 = features） |
+| **Tester**（真人或 LLM 合成參與者）| 在固定 briefing 與固定 AI 輸出下做最終判斷。LLM 合成參與者扮演真人 tester 角色，使用相同 briefing、相同 AI 輸出、相同 32 題。 | 應變項（judgment, confidence） |
+
+##### 為什麼 Stage 4 AI 刻意不接收公司術語表
+
+我們**完全可以**透過 prompt engineering 或 fine-tuning 讓 AI 知道「S-001–025 是熟識供應商、A-CTO 是高層審批」等內部知識，但**刻意選擇不這麼做**。三個理由：
+
+1. **保持 G2 vs G3 差異純粹**。本實驗的核心比較是「結論 vs 證據」兩種輸出格式對 tester 決策的不同影響；若 AI 同時被升級（補上公司術語），則組間差異會混雜「格式效應」與「AI 知識增強效應」，無法分離。**AI 維持簡單，G2/G3 的 contrast 才乾淨**。
+2. **模擬 SME 真實部署情境**。大多數中小企業剛部署採購審計工具時，AI 拿到的就是訂單原始欄位 + 歷史紀錄，沒有人坐下來餵它公司術語表（vs. 大型企業的客製化部署）。本研究刻意對齊此典型場景，呼應 Westerski et al. (2021) 指出的 deployment 落差。
+3. **盲區對 G2 / G3 對稱、對所有 tester 公平**。AI 對 G2 真人和 G3 真人提供相同水準的（有限）資訊；G1/G2/G3 的 tester 從 briefing 拿到相同的公司知識。**人類有公司知識、AI 沒有**——這個資訊不對稱反映現實人機協作（資深審計員比剛部署的 AI 更懂內部），但因 G1/G2/G3 三組 tester 均處於同樣的不對稱中，組間比較的內部效度不受影響。
+
+#### 16.1.2 兩層 LLM 結構
+
+G2 / G3 每一題涉及兩個獨立、串聯的 LLM call：
+
+- **Layer 1（Stage 4，凍結）**：扮演 AI 工具。輸出 G2 verdict（`{judgment, reason}`）或 G3 4 features。
+- **Layer 2（Stage 16）**：扮演合成參與者。讀 briefing + 訂單 + Layer 1 輸出 → 產出最終 `{judgment, confidence, reasoning}`。
+
+兩層的 system prompt、輸入、輸出與目的**完全不同**：Layer 1 是 treatment 生成器，Layer 2 是 decision agent。**Layer 1 永不重新生成**，以保證所有 tester（真人 + LLM-as-tester）面對相同的 AI 刺激。架構圖見 §16.2。
+
+### 16.2 Pipeline 架構
+
+```
+STAGE 4 — AI 工具（凍結，永不重跑）
+┌─────────────────────────────────────────────┐
+│ freeze_llm_outputs.py                       │
+│ System : 「You are an internal procurement   │
+│           auditor… output verdict / 4 feat.」│
+│ Input  : 訂單資料 + RAG 歷史相似訂單         │
+│ ─────────────────────────────────────────── │
+│ G2 → {judgment, reason}                     │
+│ G3 → 4 noteworthy features                  │
+└─────────────────────────────────────────────┘
+                    │  凍結 JSON
+                    ▼
+┌─────────────────────────────────────────────────────────────┐
+│ Path A — 真人 tester     │ Path B — LLM-as-tester            │
+│ ───────────────────────  │ ───────────────────────────       │
+│ webapp                   │ llm_simulate.py                  │
+│ 讀 briefing              │ 讀 briefing（system prompt）      │
+│ + 訂單                   │ + 訂單（user prompt）             │
+│ + (G2/G3) AI 輸出        │ + (G2/G3) 凍結 AI 輸出            │
+│ ↓                        │ ↓                                │
+│ 按提交                    │ LLM call → {judgment, conf, why} │
+│ → Google Sheets          │ → 本機 CSV                        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+→ **AI 工具（自變項）固定**，只變動「決策者」是真人或合成 LLM，便於比較兩種 agent 在相同 AI 刺激下的決策差異。架構精神對應 Park et al.（2024）合成參與者實驗。
+
+### 16.3 模擬等級與文獻定位
+
+本研究採用**單句人口統計描述**作為 persona：
+
+- Student persona：`"You are a university business student with no prior procurement experience."`
+- Auditor persona：`"You are a senior internal auditor with 10 years of experience in procurement fraud detection."`
+
+此方式對應 Park et al. (2024) 所定義的 **demographic-only baseline 等級**（normalized accuracy ≈ 74% of human retest consistency），明確低於完整訪談版（85%）。本研究誠實定位此模擬為 **計算型 pilot baseline**，不宣稱可替代真人受試者，且結論解釋嚴格限於「LLM 在此條件下的行為描述」，不推論至真實人類行為。
+
+> 引用說明：Park, J. S., Zou, C. Q., Shaw, A., Hill, B. M., Cai, C. J., Morris, M. R., Willer, R., Liang, P., & Bernstein, M. S. (2024). LLM agents grounded in self-reports enable general-purpose simulation of individuals. *arXiv:2411.10109*. https://arxiv.org/abs/2411.10109
+
+### 16.4 執行設定
+
+| 項目 | 設定 |
+|---|---|
+| 模型 | Qwen3-8B（Ollama 本機部署） |
+| 題目 | 32 道正式實驗題（與真人受試者完全相同；無 practice 題） |
+| 組別 × Persona | G1-student、G1-auditor、G2-student、G3-student（共 4 條 cell） |
+| Temperature = 0（確定性）| 每 cell 1 次（建立固定基線、對應真人 G2/G3 凍結 LLM 輸出的精神） |
+| Temperature = 0.5（隨機性）| 每 cell N 次（預設 N=10，模擬群體行為分佈）|
+| 系統 prompt | Persona（一句話）+ 真人 webapp 完整 briefing 文字（`briefing_common.md` + 對應 `briefing_g{N}.md`，包含公司情境、8 大舞弊樣態、Section 說明、群組差異說明） |
+| 使用者 prompt | 單一訂單的 Section A / B / E + （G2/G3）AI 面板，格式與 webapp 顯示一致：G2 為「**Suspicious / Normal** — reason」單行，G3 為 4 列 markdown 表格（Feature / Current value / Reference value / Why noteworthy）|
+| 輸出格式 | JSON：`judgment`（normal / suspicious）、`confidence`（1–7）、`reasoning`（單句） |
+| 思考模式處理 | Qwen3 thinking mode 會在回覆前產生 `<think>…</think>` 區塊；以 regex 後處理剝除，並設 `num_predict = 2048` 確保 JSON 不被截斷 |
+| 標籤對齊 | LLM 的 `suspicious` 對應 ground-truth 的 `anomaly`、`normal` 對應 `normal`，據此計算 `correct` 欄位 |
+| 儲存 | 本機 CSV（`data/llm_sim/llm_sim_results.csv`），不寫入 Google Sheets，與真人資料隔離 |
+| 腳本 | `code/dataset/llm_simulate.py` |
+
+### 16.5 分析計劃
+
+- **準確率比較**：LLM-G1 vs. 真人 G1（同條件，無 AI 輔助）→ 人機基線差距
+- **AI 一致率**：LLM-G2 vs. LLM-G3 的 AI 一致率 → LLM 的「自動化偏誤」水準，對照真人 G2 vs. G3
+- **Temperature 效應**：T=0 vs. T=0.5 的 accuracy / confidence 分佈 → 量化合成受試者間的「個體差異」模擬
+- **Auditor vs. Student persona**（僅 G1）：兩種背景描述下的準確率差異 → 驗證 demographic-only persona 是否能誘導出有意義的行為差異
+- **Suspicious-rate 監測**：每 cell 的 `(judgment == "suspicious") / N` 比例 → 偵測 LLM 是否系統性偏向過度報警；若顯著高於真人之同條件結果，則作為「LLM-as-participant 自動化保守偏誤」的證據呈現
+
+所有 LLM 合成結果將在論文 §14.x 以獨立節呈現，與真人受試者結果並列但不混合分析。
+
+### 16.6 限制聲明
+
+| # | 限制 | 對結果解釋的影響 |
+|---|---|---|
+| 1 | **無 Practice round feedback**：真人在進入 32 道正式題前先做 2 道 practice 題並獲得對錯回饋；LLM 為每題獨立呼叫，無此前置校準。32 道正式題期間真人亦無 feedback，故此差異**僅作用於 G2/G3 對 AI 可靠度的初始信任校準**。 | 解釋 G2/G3 結果時需註明 LLM 的初始信任未經校準。 |
+| 2 | **G2 視覺信號喪失**：真人 webapp 的 G2 verdict 以紅／綠色塊（`st.error` / `st.success`）呈現；純文字 prompt 只能傳遞語義（粗體 `**Suspicious**`），無顏色強度。 | 若真人對顏色信號的反應強於語義，本模擬會低估 G2 的 anchoring 強度。 |
+| 3 | **無跨題記憶**：每題獨立呼叫，LLM 不知前題答案；此條件**與真人 32 道正式題期間一致**（真人亦無 feedback）。 | 不需補丁。 |
+| 4 | **無真人特有干擾因子**：無疲勞、無進場順序效應、無情緒，LLM 的決策一致性系統性高於真人。 | LLM 的 within-cell variability 不可解讀為真人個體差異的代理。 |
+| 5 | **Qwen3-8B 訓練語料的領域知識先驗**：模型可能已學習一般採購詐騙語彙，使 LLM-G1-student 的準確率不能直接視為「無背景知識學生」的等價基線。 | LLM-G1-student 為「具備一般語言知識的合成參與者」，非真人 naïve student 的代理。 |
+| 6 | **一句話 persona 屬 demographic-only 等級**（Park et al., 2024）：無法捕捉認知風格、風險態度、對 AI 的先驗信任度。 | 結論限於 group-level 比較，不延伸至 individual-level 模擬替代。 |
+| 7 | **G3 證據措辭分布**：抽查 128 條 `why_noteworthy` 中約 48% 為 confirming／neutral，41% 偏 deviation；分布平衡可接受，仍可能形成弱方向暗示。 | 列為 minor limitation，不影響組間比較。 |
+| 8 | **AI 工具不具公司術語表**：見 §16.1.1。此為刻意的 treatment 設計（保持 G2 vs G3 contrast 純粹、模擬 SME 開箱情境）；對 G2 / G3 對稱，不影響組間比較；可能拉低 AI 輸出絕對品質的天花板。 | 不影響組間比較。 |
+
+---
+
+## 17. 參考文獻
 
 ```
 Association of Certified Fraud Examiners (2024). Occupational Fraud 2024:
@@ -1318,4 +1450,9 @@ Westerski, A., Kanagasabai, R., Shaham, E., Narayanan, A., Wong, J., &
 
 Mouser Electronics Search API v1, `search/partnumber` endpoint,
    `partSearchOptions="exact"`.
+
+Park, J. S., Zou, C. Q., Shaw, A., Hill, B. M., Cai, C. J., Morris, M. R.,
+   Willer, R., Liang, P., & Bernstein, M. S. (2024). LLM agents grounded in
+   self-reports enable general-purpose simulation of individuals.
+   arXiv:2411.10109. https://arxiv.org/abs/2411.10109
 ```
