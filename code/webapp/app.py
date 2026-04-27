@@ -22,7 +22,7 @@ import streamlit as st
 from data_loader import load_frozen_bundle, truth_lookup
 from question_view import render_order
 from sheets_backend import SheetsClient, from_streamlit_secrets
-from survey import LIKERT_LABELS, TRUST_ITEMS
+from survey import LIKERT_LABELS, items_for_group
 
 APP_DIR = Path(__file__).resolve().parent
 
@@ -380,10 +380,7 @@ def render_experiment() -> None:
     if idx >= n_total:
         st.success("All 32 questions complete.")
         if st.button("Continue", type="primary"):
-            if st.session_state["group"] == "G1":
-                _go("THANKS")
-            else:
-                _go("TRUST_SURVEY")
+            _go("TRUST_SURVEY")
         return
 
     st.header(f"Question {idx + 1} of {n_total}")
@@ -441,16 +438,35 @@ def render_experiment() -> None:
 
 
 def render_trust_survey() -> None:
-    st.header("Final Survey — 5 short questions about the AI assistance")
-    st.write(
-        "Please answer based on your overall impression of the AI's "
-        "outputs across the 32 official questions you just completed. "
-        "There are no right or wrong answers."
-    )
+    group = st.session_state["group"]
+    items = items_for_group(group)
+
+    if group == "G1":
+        st.header(
+            "Final Survey — 5 short questions about Section E "
+            "(the deviation sentences)"
+        )
+        st.write(
+            "Please answer based on your overall impression of the "
+            "Section E deviation sentences across the 32 official "
+            "questions you just completed. There are no right or wrong "
+            "answers."
+        )
+        instrument_label = "section_e"
+    else:
+        st.header(
+            "Final Survey — 5 short questions about the AI assistance"
+        )
+        st.write(
+            "Please answer based on your overall impression of the AI's "
+            "outputs across the 32 official questions you just completed. "
+            "There are no right or wrong answers."
+        )
+        instrument_label = "ai"
 
     with st.form("trust_form"):
         responses: dict[str, int] = {}
-        for item in TRUST_ITEMS:
+        for item in items:
             choice = st.radio(
                 item.text,
                 options=list(range(1, 8)),
@@ -466,11 +482,11 @@ def render_trust_survey() -> None:
         return
 
     submit_ts = _now_iso()
-    for item in TRUST_ITEMS:
+    for item in items:
         _persist(
             {
                 "participant_id": st.session_state["participant_id"],
-                "group": st.session_state["group"],
+                "group": group,
                 "phase": "trust_survey",
                 "question_idx": item.item_id,
                 "po_id": "",
@@ -484,6 +500,7 @@ def render_trust_survey() -> None:
                     {
                         "item_id": item.item_id,
                         "construct": item.construct,
+                        "instrument": instrument_label,
                         "text": item.text,
                     },
                     ensure_ascii=False,

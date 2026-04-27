@@ -39,4 +39,11 @@ practice answers are not used in the analysis.
 - One submission per order. **No going back.**
 - Aim for 45 to 75 seconds per question.
 
+## After the 32 Official Questions
+
+You will be asked **5 short Likert questions** about your overall
+experience with the **Section E deviation sentences** (not about any AI
+— Group 1 does not see AI output). The whole survey takes about
+2 minutes.
+
 Press *Continue* to start the practice round.
