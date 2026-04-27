@@ -18,6 +18,15 @@ The AI (a small open-weights language model, Qwen3-8B) has been asked
 to read the order plus a few similar historical orders, and to **list
 the 4 most noteworthy features** of the current order.
 
+**What the AI was given vs. what you have.** The AI sees only the order
+fields, the free-text notes, and a few similar historical orders. It has
+**not** been given Section E (deviation sentences) or the company-specific
+guidance you read on the previous page (supplier conventions such as
+*S-001 to S-025 are regulars*, approver hierarchy meanings, the 8 fraud
+patterns). Take this into account when reading the 4 features — the AI
+may flag a value as "unusual" simply because it does not know the company
+context that you do.
+
 A *noteworthy feature* may be one of two things:
 
 1. **A deviation** — the value is different from typical, e.g.
