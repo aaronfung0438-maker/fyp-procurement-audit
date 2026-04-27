@@ -48,6 +48,13 @@ def render_section_a(row: pd.Series) -> None:
     """Section A — order details (deterministic facts)."""
     st.markdown("##### Section A — Order Details")
 
+    if "item_category" not in row.index:
+        st.error(
+            f"**[DEBUG] Columns loaded ({len(row.index)}):** "
+            + ", ".join(str(c) for c in row.index[:15])
+            + (" …" if len(row.index) > 15 else "")
+        )
+
     cat = _g(row, "item_category")
     sku = _g(row, "item_sku")
     item_str = f"{cat} · {sku}" if cat != "—" or sku != "—" else "—"
