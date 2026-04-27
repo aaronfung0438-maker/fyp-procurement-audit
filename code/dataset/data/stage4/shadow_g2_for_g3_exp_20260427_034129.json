@@ -66,5 +66,65 @@
   "PO-2024-0163": {
     "judgment": "normal",
     "reason": "The unit price is within the historical range for MG-588 PCBs from S-014, and the order details align with previous patterns."
+  },
+  "PO-2024-0033": {
+    "judgment": "normal",
+    "reason": "The unit price is slightly below market rate but within historical ordering patterns for the same requester and supplier."
+  },
+  "PO-2024-0353": {
+    "judgment": "suspicious",
+    "reason": "The unit price is significantly lower than market reference, quantity exceeds typical order sizes, and delivery lag is unusually long compared to historical orders for the same SKU."
+  },
+  "PO-2024-0278": {
+    "judgment": "suspicious",
+    "reason": "The unit price of $2.74 is significantly lower than both the market reference of $4.00 and the historical prices from the same supplier."
+  },
+  "PO-2024-0211": {
+    "judgment": "suspicious",
+    "reason": "The order quantity (162 units) is significantly higher than typical historical orders (3-58 units) for the same SKU, while the unit price is slightly below market rate and delivery lag is shorter than typical."
+  },
+  "PO-2024-0270": {
+    "judgment": "suspicious",
+    "reason": "The unit price is below market rate, the quantity is less than typical, and the delivery lag is shorter than the supplier's usual lead time."
+  },
+  "PO-2024-0030": {
+    "judgment": "suspicious",
+    "reason": "The unit price of $4.7782 exceeds the market reference of $4.0631 for the same SKU, and the total amount does not align with typical pricing patterns for this component."
+  },
+  "PO-2024-0051": {
+    "judgment": "suspicious",
+    "reason": "The unit price of $4.9988 is significantly higher than the market reference of $4.0631 and exceeds previous orders for the same SKU from the same supplier."
+  },
+  "PO-2024-0456": {
+    "judgment": "suspicious",
+    "reason": "The unit price is significantly higher than market reference and historical orders, with a quantity exceeding typical order sizes while the delivery lag surpasses the supplier's usual lead time."
+  },
+  "PO-2024-0275": {
+    "judgment": "suspicious",
+    "reason": "The unit price of $5.1270 exceeds the market reference of $4.50 and is higher than previous orders for the same SKU from other suppliers, while the delivery lag of 95 days slightly exceeds the typical 90-day lead time."
+  },
+  "PO-2024-0096": {
+    "judgment": "suspicious",
+    "reason": "The unit price is significantly lower than market reference and historical orders from the same requester to this supplier, while the delivery lag is shorter than typical for this component."
+  },
+  "PO-2024-0463": {
+    "judgment": "suspicious",
+    "reason": "The unit price is significantly lower than the market reference and the delivery lag exceeds the supplier's typical lead time by over 40 days."
+  },
+  "PO-2024-0331": {
+    "judgment": "suspicious",
+    "reason": "The order quantity (169) and unit price ($5.7962) significantly exceed market reference prices and historical orders from the same supplier for similar items."
+  },
+  "PO-2024-0340": {
+    "judgment": "suspicious",
+    "reason": "The unit price is higher than market reference, delivery lag is shorter than typical, and approval lag is unusually fast for this supplier."
+  },
+  "PO-2024-0493": {
+    "judgment": "suspicious",
+    "reason": "The order quantity (290) and unit price ($0.1649) significantly deviate from market references and historical patterns for supplier S-028."
+  },
+  "PO-2024-0029": {
+    "judgment": "suspicious",
+    "reason": "The unit price is higher than market reference and historical orders for the same SKU, with a longer delivery lag than typical."
   }
 }
