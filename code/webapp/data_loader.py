@@ -71,6 +71,21 @@ def _normalize_column_names(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def _read_df(xlsx_path: Path) -> pd.DataFrame:
+    """Read a Stage-3 artefact preferring CSV over xlsx.
+
+    CSV is more reliably parsed across Python / pandas / openpyxl
+    version combinations on different platforms (e.g. Streamlit Cloud).
+    Falls back to xlsx if no sibling CSV is found.
+    """
+    csv_path = xlsx_path.with_suffix(".csv")
+    if csv_path.exists():
+        df = pd.read_csv(csv_path, encoding="utf-8-sig")
+    else:
+        df = pd.read_excel(xlsx_path)
+    return _normalize_column_names(df)
+
+
 def load_frozen_bundle() -> FrozenBundle:
     """Resolve and load the most recent Stage 3 + Stage 4 artefacts."""
     exp_xlsx = _latest(list(STAGE3_DIR.glob("experiment_32qs_*.xlsx")))
@@ -88,8 +103,8 @@ def load_frozen_bundle() -> FrozenBundle:
 
     return FrozenBundle(
         timestamp=timestamp,
-        experiment_df=_normalize_column_names(pd.read_excel(exp_xlsx)),
-        practice_df=_normalize_column_names(pd.read_excel(pra_xlsx)),
+        experiment_df=_read_df(exp_xlsx),
+        practice_df=_read_df(pra_xlsx),
         experiment_key_df=_normalize_column_names(pd.read_excel(exp_key)),
         practice_key_df=_normalize_column_names(pd.read_excel(pra_key)),
         g2_exp=_read_json(g2_exp_path),

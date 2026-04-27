@@ -177,9 +177,11 @@ def render_landing() -> None:
 
 def render_briefing() -> None:
     group = st.session_state["group"]
+    pid = st.session_state["participant_id"]
     common = _load_briefing("briefing_common.md")
     group_specific = _load_briefing(f"briefing_{group.lower()}.md")
 
+    st.info(f"Participant: **{pid}** · Assigned group: **{group}**")
     st.markdown(common)
     st.markdown("---")
     st.markdown(group_specific)
@@ -544,10 +546,10 @@ def render_thanks() -> None:
 
 
 def _render_decision_form(form_key: str):
-    """Render the judgment / confidence / rationale form.
+    """Render the judgment / confidence form.
 
-    Returns ``(judgment, confidence, rationale)`` on submit, ``None``
-    otherwise. The caller is responsible for advancing state.
+    Returns ``(judgment, confidence, "")`` on submit, ``None`` otherwise.
+    The caller is responsible for advancing state.
     """
     with st.form(form_key, clear_on_submit=True):
         st.markdown("---")
@@ -565,18 +567,10 @@ def _render_decision_form(form_key: str):
             value=4,
             key=f"{form_key}_confidence",
         )
-        rationale = st.text_area(
-            "Brief rationale (one or two sentences)",
-            key=f"{form_key}_rationale",
-            placeholder="Why did you pick that answer?",
-        )
         submitted = st.form_submit_button("Submit answer", type="primary")
     if not submitted:
         return None
-    if not rationale.strip():
-        st.error("Please write a brief rationale before submitting.")
-        return None
-    return judgment, int(confidence), rationale.strip()
+    return judgment, int(confidence), ""
 
 
 # ---------------------------------------------------------------------------
