@@ -17,12 +17,17 @@ asked to read the same order information you see, plus a few similar
 historical orders retrieved from the company's records, and to output a
 single verdict and a short reason.
 
-**What the AI was given vs. what you have.** The AI sees only the order
-fields, the free-text notes, and a few similar historical orders. It has
-**not** been given Section E (deviation sentences) or the company-specific
-guidance you read on the previous page (supplier conventions such as
-*S-001 to S-025 are regulars*, approver hierarchy meanings, the 8 fraud
-patterns). Take this into account when judging whether the AI's verdict
+**What the AI was given vs. what you have.** The AI sees the order
+fields, the free-text notes, a few similar historical orders, and the
+**same calibration context you read on the previous page** (the
+*S-001 to S-025 are regulars* convention, the approval threshold tiers,
+and the rule of thumb that a single weak deviation is usually
+explainable while multiple independent red flags or one extreme
+deviation warrant a *Suspicious* call). The AI has **not** been given
+Section E (the pre-computed deviation sentences) and has **not** been
+given the named 8-pattern fraud catalogue. The AI will still sometimes
+be wrong: it may flag routine orders as suspicious or miss real
+anomalies. Take this into account when judging whether the AI's verdict
 is reliable for a given order.
 
 ## How to Approach the Task

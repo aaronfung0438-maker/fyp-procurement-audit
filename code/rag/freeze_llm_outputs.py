@@ -304,6 +304,23 @@ SYSTEM_G2 = """\
 You are an internal procurement auditor at a 30-person electronics company.
 Review the purchase order below and decide if it is suspicious.
 
+CALIBRATION CONTEXT (judgment standards used at this company):
+- The company routinely uses suppliers S-001 through S-025. Other supplier
+  IDs represent newer or one-off vendors -- unusual but not automatically
+  suspicious; a new supplier with otherwise typical fields can be legitimate.
+- Approval thresholds are tiered: orders below USD 1,000 are signed off
+  by A-PROC-01 / A-PROC-02; USD 1,000-5,000 by A-CTO; above USD 5,000 by
+  A-CEO. A wrong-level approver on a large order is a notable deviation.
+- Most orders in this company are routine and normal. A SINGLE weak
+  deviation (e.g., unit price 1.2x median, slightly fast approval,
+  quantity moderately above median) is usually explainable on its own.
+  Flag the order as "suspicious" ONLY when you observe MULTIPLE
+  independent red flags, OR ONE extreme deviation (e.g., unit price
+  > 2.5x median, total just below an approval threshold combined with
+  unusual supplier, missing approver on a large order).
+- Use the SKU market reference and the retrieved historical orders to
+  judge whether a given value is genuinely unusual for THIS company.
+
 Output ONLY a valid JSON object in this exact format:
 {
   "judgment": "suspicious" | "normal",
@@ -315,7 +332,8 @@ Rules:
 - reason must be a single sentence. No probability, no percentage, no confidence score.
 - Do NOT mention "PACE", "anomaly score", "fraud probability", "recommend",
   "conclude", or any audit framework name.
-- Base your judgment on the order fields and the retrieved historical orders.
+- Base your judgment on the order fields, the calibration context above,
+  and the retrieved historical orders.
 - Do NOT produce any text outside the JSON object.\
 """
 
@@ -460,7 +478,7 @@ def find_dataset_excel() -> Path:
 
 # ── Main run ───────────────────────────────────────────────────────────────────
 def run(exp_path: Path, dataset_path: Path, label: str = "exp",
-        use_comp_ref: bool = True) -> None:
+        use_comp_ref: bool = True, skip_g3: bool = False) -> None:
     print("\n=== Stage 4b -- Freeze LLM Outputs ===")
     print(f"Question set   : {exp_path}")
     print(f"Dataset        : {dataset_path}")
@@ -506,7 +524,8 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
 
     def _flush() -> None:
         paths["g2"].write_text(dumps(g2_verdicts), encoding="utf-8")
-        paths["g3"].write_text(dumps(g3_evidence), encoding="utf-8")
+        if not skip_g3:
+            paths["g3"].write_text(dumps(g3_evidence), encoding="utf-8")
         paths["shadow"].write_text(dumps(shadow_g2), encoding="utf-8")
         paths["log"].write_text(dumps(gen_log),     encoding="utf-8")
 
@@ -562,19 +581,23 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
             print(f"  G2 FAILED -> fallback inserted: {e}")
 
         # 5. G3: 4 structured suspicious features
-        t0 = time.time()
-        try:
-            g3_result, g3_retries = generate_g3(order_card, rag_snippet)
-            g3_ms = int((time.time() - t0) * 1000)
-            g3_evidence[po_id] = g3_result
-            entry.update({"g3_ok": True, "g3_retries": g3_retries, "g3_ms": g3_ms})
-            print(f"  G3: {len(g3_result['noteworthy_features'])} features  ({g3_ms} ms, retries={g3_retries})")
-        except RuntimeError as e:
-            g3_ms = int((time.time() - t0) * 1000)
-            g3_evidence[po_id] = json.loads(json.dumps(G3_FALLBACK))
-            entry.update({"g3_ok": False, "g3_error": str(e), "g3_ms": g3_ms,
-                          "g3_fallback_used": True})
-            print(f"  G3 FAILED -> fallback inserted: {e}")
+        if not skip_g3:
+            t0 = time.time()
+            try:
+                g3_result, g3_retries = generate_g3(order_card, rag_snippet)
+                g3_ms = int((time.time() - t0) * 1000)
+                g3_evidence[po_id] = g3_result
+                entry.update({"g3_ok": True, "g3_retries": g3_retries, "g3_ms": g3_ms})
+                print(f"  G3: {len(g3_result['noteworthy_features'])} features  ({g3_ms} ms, retries={g3_retries})")
+            except RuntimeError as e:
+                g3_ms = int((time.time() - t0) * 1000)
+                g3_evidence[po_id] = json.loads(json.dumps(G3_FALLBACK))
+                entry.update({"g3_ok": False, "g3_error": str(e), "g3_ms": g3_ms,
+                              "g3_fallback_used": True})
+                print(f"  G3 FAILED -> fallback inserted: {e}")
+        else:
+            entry.update({"g3_skipped": True})
+            print("  G3: SKIPPED (--skip-g3); will reuse latest existing g3_evidence_*.json")
 
         # 6. Shadow G2 (same prompt as G2; logged for AOR computation; never shown to participants)
         t0 = time.time()
@@ -608,7 +631,9 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
     else:
         print(f"  G2   : all {n_qs} questions passed (no fallback)")
 
-    if missing_g3_pid:
+    if skip_g3:
+        print(f"  G3   : SKIPPED (--skip-g3); previous g3_evidence_*.json remains current.")
+    elif missing_g3_pid:
         print(f"  ERROR: G3 has no record for {len(missing_g3_pid)} question(s): {sorted(missing_g3_pid)}")
     elif g3_fallbacks:
         print(f"  WARN : G3 fallback used for {len(g3_fallbacks)}/{n_qs} question(s): {sorted(g3_fallbacks)}")
@@ -622,7 +647,9 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
     _flush()
 
     print("\nOutput files:")
-    for p in paths.values():
+    for k, p in paths.items():
+        if k == "g3" and skip_g3:
+            continue
         print(f"  {p}")
 
     total_ms = sum(e.get("g2_ms", 0) + e.get("g3_ms", 0) for e in gen_log)
@@ -643,17 +670,27 @@ def acceptance_report(label: str | None = None) -> None:
     ok_g2 = sum(1 for e in data if e.get("g2_ok"))
     ok_g3 = sum(1 for e in data if e.get("g3_ok"))
     ok_sg = sum(1 for e in data if e.get("shadow_g2_ok"))
+    skipped_g3 = all(e.get("g3_skipped") for e in data)
     print(f"\n=== Acceptance report: {logs[-1].name} ===")
     print(f"  G2       : {ok_g2}/{n} passed")
-    print(f"  G3       : {ok_g3}/{n} passed")
+    if skipped_g3:
+        print(f"  G3       : SKIPPED (not regenerated; previous file remains current)")
+    else:
+        print(f"  G3       : {ok_g3}/{n} passed")
     print(f"  Shadow G2: {ok_sg}/{n} passed")
-    failures = [e for e in data if not e.get("g2_ok") or not e.get("g3_ok")]
+    if skipped_g3:
+        failures = [e for e in data if not e.get("g2_ok")]
+    else:
+        failures = [e for e in data if not e.get("g2_ok") or not e.get("g3_ok")]
     if failures:
         print("  Failed questions:")
         for e in failures:
             g2s = "OK" if e.get("g2_ok") else "FAIL"
-            g3s = "OK" if e.get("g3_ok") else "FAIL"
-            print(f"    {e['po_id']}  G2={g2s}  G3={g3s}")
+            if skipped_g3:
+                print(f"    {e['po_id']}  G2={g2s}  G3=SKIPPED")
+            else:
+                g3s = "OK" if e.get("g3_ok") else "FAIL"
+                print(f"    {e['po_id']}  G2={g2s}  G3={g3s}")
     else:
         print("  All passed. Ready for Stage 5.")
 
@@ -673,6 +710,11 @@ def main() -> None:
                              'Use "practice" when freezing the practice batch.')
     parser.add_argument("--no-comp-ref",   action="store_true",
                         help="Omit SKU anchor values from prompt (ablation use only)")
+    parser.add_argument("--skip-g3",       action="store_true",
+                        help="Only regenerate G2 + shadow_g2 (skip G3 evidence). "
+                             "Use when only the G2 system prompt has changed; "
+                             "the previous g3_evidence_*.json remains the latest "
+                             "and is picked up by data_loader's glob.")
     parser.add_argument("--report",        action="store_true",
                         help="Print acceptance report only; do not regenerate")
     args = parser.parse_args()
@@ -686,7 +728,8 @@ def main() -> None:
     dataset_path = args.dataset_input or find_dataset_excel()
 
     run(exp_path=exp_path, dataset_path=dataset_path,
-        label=args.label, use_comp_ref=not args.no_comp_ref)
+        label=args.label, use_comp_ref=not args.no_comp_ref,
+        skip_g3=args.skip_g3)
     acceptance_report(label=args.label)
 
 

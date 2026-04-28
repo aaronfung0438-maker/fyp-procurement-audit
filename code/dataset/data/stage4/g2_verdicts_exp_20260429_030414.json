@@ -1,0 +1,130 @@
+{
+  "PO-2024-0375": {
+    "judgment": "normal",
+    "reason": "The unit price is 13% above market typical but within historical order ranges, quantity is below typical but not extreme, delivery lag matches historical patterns, and approver is correct for order size."
+  },
+  "PO-2024-0319": {
+    "judgment": "normal",
+    "reason": "The unit price is significantly below market but justified by the purchase note's inventory urgency, and the supplier is a routine vendor with known fast delivery terms."
+  },
+  "PO-2024-0326": {
+    "judgment": "suspicious",
+    "reason": "The order quantity is exceptionally high compared to historical orders, and the approver field is missing despite the total amount exceeding the A-CTO approval threshold."
+  },
+  "PO-2024-0179": {
+    "judgment": "normal",
+    "reason": "The unit price is below market typical but within historical order ranges, supplier is routine, and approval level is appropriate for the total amount."
+  },
+  "PO-2024-0306": {
+    "judgment": "suspicious",
+    "reason": "The unit price is 2.5x higher than market reference and quantity is 11x above typical order size, combined with an unusually high price for a supplier previously used for smaller orders."
+  },
+  "PO-2024-0298": {
+    "judgment": "normal",
+    "reason": "The order's unit price is slightly below market typical, quantity is moderately above historical averages, and delivery lag aligns with supplier profile, with no extreme deviations or multiple red flags."
+  },
+  "PO-2024-0088": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.2x the market median but within historical ranges for this requester and supplier, and the approval lag is unusually fast but not extreme."
+  },
+  "PO-2024-0022": {
+    "judgment": "suspicious",
+    "reason": "The order exceeds $5,000 but was approved by A-CTO instead of A-CEO, and the quantity (1033 units) is unusually high compared to historical orders for this SKU"
+  },
+  "PO-2024-0140": {
+    "judgment": "suspicious",
+    "reason": "The order quantity of 116,822 units is an extreme deviation from typical orders (100 units), combined with a newly opened supplier account and total amount just below the A-CEO approval threshold."
+  },
+  "PO-2024-0181": {
+    "judgment": "suspicious",
+    "reason": "The unit price of $10.8690 is over 2.5x the market reference price of $4.00, constituting an extreme deviation."
+  },
+  "PO-2024-0359": {
+    "judgment": "normal",
+    "reason": "The unit price is 26% above typical but within acceptable range for a small order, and the delivery lag is slightly shorter than market reference."
+  },
+  "PO-2024-0020": {
+    "judgment": "normal",
+    "reason": "The unit price is 11% above typical market rates but within acceptable range for a non-standard supplier and order size."
+  },
+  "PO-2024-0174": {
+    "judgment": "normal",
+    "reason": "The order uses a new supplier (S-026) but aligns with historical pricing and delivery lags for SC0915, with unit price slightly below market reference and delivery lag within typical range."
+  },
+  "PO-2024-0402": {
+    "judgment": "suspicious",
+    "reason": "The order uses a new supplier (S-028) with suspended operations history, pays 1.28x the typical unit price, and has a 35-day longer lead time than market reference, combined with a 5.5-day approval lag exceeding historical norms."
+  },
+  "PO-2024-0106": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.2x the median, quantity is slightly below typical, and delivery lag is longer than market reference but within supplier profile expectations, with no multiple red flags."
+  },
+  "PO-2024-0418": {
+    "judgment": "suspicious",
+    "reason": "The order uses a new supplier (S-028) with a suspended operation history and a delivery lag exceeding typical lead time by 4 days, combined with a unit price slightly above market reference."
+  },
+  "PO-2024-0163": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.2x the market median but aligns with historical orders from S-014 for MG-588, and all other fields fall within typical ranges for this supplier and SKU."
+  },
+  "PO-2024-0033": {
+    "judgment": "normal",
+    "reason": "The unit price is slightly below market typical, but within historical ranges for this supplier and SKU, and all approval and delivery parameters align with standard procedures."
+  },
+  "PO-2024-0353": {
+    "judgment": "suspicious",
+    "reason": "The unit price is 19% below market reference and quantity is 63% above typical, combined with a new supplier ID, indicating multiple deviations from historical patterns."
+  },
+  "PO-2024-0278": {
+    "judgment": "normal",
+    "reason": "The unit price is below the market reference but not extreme, and the order aligns with historical purchasing patterns for this supplier."
+  },
+  "PO-2024-0211": {
+    "judgment": "normal",
+    "reason": "The unit price is slightly below market reference and the quantity is higher than typical but within plausible range for a single order."
+  },
+  "PO-2024-0270": {
+    "judgment": "normal",
+    "reason": "The unit price is slightly below market, quantity is moderately lower than typical, and delivery lag is shorter than market lead time but within acceptable range for the supplier's profile."
+  },
+  "PO-2024-0030": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.17x the market median, quantity matches typical orders, and approval level is appropriate for the total amount."
+  },
+  "PO-2024-0051": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.2x the median, delivery lag is slightly above typical, and approval lag is within acceptable range for a small order with a known supplier."
+  },
+  "PO-2024-0456": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.25x typical but explained by the supplier's known long lead times and the order's 134-day delivery lag aligns with S-001's historical shipping patterns."
+  },
+  "PO-2024-0275": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.14x the market typical, quantity is 40% below typical, and delivery lag is 5 days over typical, but these deviations are explained by the purchase note and fall within acceptable ranges for a small order."
+  },
+  "PO-2024-0096": {
+    "judgment": "normal",
+    "reason": "The unit price is below market typical, quantity is slightly below average, and delivery lag is shorter than market lead time, but no extreme deviations or multiple red flags are present."
+  },
+  "PO-2024-0463": {
+    "judgment": "normal",
+    "reason": "The unit price is below market reference and delivery lag exceeds typical lead time, but these deviations are individually explainable and do not meet the threshold for suspicion."
+  },
+  "PO-2024-0331": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.28x the market rate, quantity is higher than typical but justified by the purchase note, and delivery lag is slightly above typical but within supplier profile."
+  },
+  "PO-2024-0340": {
+    "judgment": "normal",
+    "reason": "The unit price is 7.3% above market typical, delivery lag aligns with historical orders from S-003, and approver level is appropriate for the total amount."
+  },
+  "PO-2024-0493": {
+    "judgment": "suspicious",
+    "reason": "The order uses a newly-reopened supplier (S-028) with a suspended history, orders 290 units (far above typical 80) at 1.4x typical price, and has an unusually long delivery lag despite market data showing shorter typical lead times."
+  },
+  "PO-2024-0029": {
+    "judgment": "normal",
+    "reason": "The unit price is 1.2x the median, quantity is moderately below typical, and delivery lag is slightly above average, but these are single weak deviations explainable by historical patterns."
+  }
+}
