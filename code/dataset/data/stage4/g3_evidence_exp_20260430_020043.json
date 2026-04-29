@@ -1,0 +1,898 @@
+{
+  "PO-2024-0375": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$0.1312",
+        "reference_value": "$0.1163",
+        "why_noteworthy": "Unit price is 13% higher than market typical value."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "133 days",
+        "reference_value": "114 days",
+        "why_noteworthy": "Lead time exceeds market typical duration by 19 days."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "54",
+        "reference_value": "80",
+        "why_noteworthy": "Order quantity is 32% below typical market level."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-023",
+        "reference_value": "S-001/S-007/S-003",
+        "why_noteworthy": "New supplier ID not present in top historical orders."
+      }
+    ]
+  },
+  "PO-2024-0319": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$0.0108",
+        "reference_value": "$0.0218",
+        "why_noteworthy": "Unit price is significantly lower than market reference, suggesting potential undervaluation or negotiation advantage."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "72 days",
+        "reference_value": "126 days",
+        "why_noteworthy": "Delivery lag is notably shorter than typical market lead time, indicating expedited shipping or supplier efficiency."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-025",
+        "reference_value": "S-001 through S-025 (established)",
+        "why_noteworthy": "Supplier S-025 is newly registered, raising questions about operational history and reliability."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "96",
+        "reference_value": "100",
+        "why_noteworthy": "Quantity is slightly below typical order size but closely matches historical median for this SKU."
+      }
+    ]
+  },
+  "PO-2024-0326": {
+    "noteworthy_features": [
+      {
+        "feature": "Approver",
+        "current_value": "nan",
+        "reference_value": "A-CTO",
+        "why_noteworthy": "Order total is $1,500 requiring A-CTO approval, but approver is missing."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "53191",
+        "reference_value": "100",
+        "why_noteworthy": "Quantity is 531 times higher than typical order volume for this SKU."
+      },
+      {
+        "feature": "Unit Price",
+        "current_value": "$0.0282",
+        "reference_value": "$0.0218",
+        "why_noteworthy": "Unit price is 1.3x higher than market reference for this resistor."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-017",
+        "reference_value": "S-001, S-007, S-011 (historical suppliers)",
+        "why_noteworthy": "Supplier S-017 is new and not listed in prior orders for this SKU."
+      }
+    ]
+  },
+  "PO-2024-0179": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$0.0762",
+        "reference_value": "$0.1163",
+        "why_noteworthy": "Unit price is significantly lower than market reference, indicating potential cost optimization."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "39",
+        "reference_value": "80",
+        "why_noteworthy": "Order quantity is notably below typical market reference, suggesting smaller-scale procurement."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "93 days",
+        "reference_value": "114 days",
+        "why_noteworthy": "Delivery lag is shorter than market reference, indicating faster supplier response."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-003",
+        "reference_value": "Established suppliers (S-001, S-007, etc.)",
+        "why_noteworthy": "New supplier with no prior historical records, raising procurement risk."
+      }
+    ]
+  },
+  "PO-2024-0306": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$0.2878",
+        "reference_value": "$0.1163",
+        "why_noteworthy": "Unit price is 2.5x higher than market reference and historical orders."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "885",
+        "reference_value": "80",
+        "why_noteworthy": "Quantity is 11x higher than typical order size and historical orders."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "85 days",
+        "reference_value": "114 days",
+        "why_noteworthy": "Delivery lag is shorter than market reference but longer than some historical orders."
+      },
+      {
+        "feature": "Approver",
+        "current_value": "A-PROC-01",
+        "reference_value": "A-PROC-01 (for < $1,000 orders)",
+        "why_noteworthy": "Approver matches tiered threshold for total amount under $1,000."
+      }
+    ]
+  },
+  "PO-2024-0298": {
+    "noteworthy_features": [
+      {
+        "feature": "Approval lag",
+        "current_value": "5.30 days",
+        "reference_value": "1.92 days",
+        "why_noteworthy": "Approval lag significantly higher than historical median for S-001 orders."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "125 days",
+        "reference_value": "112 days",
+        "why_noteworthy": "Delivery lag aligns with supplier's known long lead time requirements."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "86",
+        "reference_value": "30",
+        "why_noteworthy": "Quantity exceeds market reference but matches historical order patterns."
+      },
+      {
+        "feature": "Unit price",
+        "current_value": "$0.0923",
+        "reference_value": "$0.1027",
+        "why_noteworthy": "Unit price slightly below market reference but within historical price range."
+      }
+    ]
+  },
+  "PO-2024-0088": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$16.1836",
+        "reference_value": "$15.5745",
+        "why_noteworthy": "Unit price exceeds market reference by ~4%, indicating potential overpayment."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "4",
+        "reference_value": "3",
+        "why_noteworthy": "Quantity exceeds typical order size by 33%, suggesting possible over-ordering."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "32 days",
+        "reference_value": "23 days",
+        "why_noteworthy": "Delivery lag exceeds market lead time by 39%, indicating potential delays."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "0.47 days",
+        "reference_value": "2.5 days",
+        "why_noteworthy": "Approval lag is significantly shorter than historical average, suggesting expedited processing."
+      }
+    ]
+  },
+  "PO-2024-0022": {
+    "noteworthy_features": [
+      {
+        "feature": "Quantity",
+        "current_value": "1033",
+        "reference_value": "5",
+        "why_noteworthy": "Quantity is 206 times higher than typical historical orders for this SKU."
+      },
+      {
+        "feature": "Unit price",
+        "current_value": "$4.7863",
+        "reference_value": "$4.5000",
+        "why_noteworthy": "Unit price is 6% higher than the market reference for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "85 days",
+        "reference_value": "90 days",
+        "why_noteworthy": "Delivery lag is 5 days shorter than the market's typical lead time."
+      },
+      {
+        "feature": "Purchase note",
+        "current_value": "Coordinate with A-CTO's approval authority",
+        "reference_value": "Standard approval coordination",
+        "why_noteworthy": "Purchase note redundantly references approver's authority rather than project needs."
+      }
+    ]
+  },
+  "PO-2024-0140": {
+    "noteworthy_features": [
+      {
+        "feature": "Supplier",
+        "current_value": "S-020",
+        "reference_value": "S-001, S-011, S-003",
+        "why_noteworthy": "New supplier not previously used in historical orders for this SKU."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "116822",
+        "reference_value": "100",
+        "why_noteworthy": "Quantity exceeds typical market reference by over 1,000x, suggesting bulk procurement."
+      },
+      {
+        "feature": "Delivery Lag",
+        "current_value": "136 days",
+        "reference_value": "126 days",
+        "why_noteworthy": "Lead time slightly longer than market reference but within historical order ranges."
+      },
+      {
+        "feature": "Purchase Note",
+        "current_value": "newly opened account",
+        "reference_value": "Standard payment instructions",
+        "why_noteworthy": "Unusual mention of a newly opened account raises payment processing concerns."
+      }
+    ]
+  },
+  "PO-2024-0181": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$10.8690",
+        "reference_value": "$4.0000",
+        "why_noteworthy": "Unit price is 2.7x higher than market reference, indicating potential overpayment."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "120 days",
+        "reference_value": "112 days",
+        "why_noteworthy": "Lead time exceeds market typical by 8 days, suggesting potential supply chain delays."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "2",
+        "reference_value": "5",
+        "why_noteworthy": "Order quantity is 60% below historical median for similar SKUs."
+      },
+      {
+        "feature": "Approver",
+        "current_value": "A-PROC-01",
+        "reference_value": "A-PROC-01",
+        "why_noteworthy": "Approver matches tiered threshold for USD <1,000 orders, consistent with policy."
+      }
+    ]
+  },
+  "PO-2024-0359": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$5.1117",
+        "reference_value": "$4.0631",
+        "why_noteworthy": "Unit price is 25% higher than market reference for same SKU."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "5",
+        "reference_value": "8",
+        "why_noteworthy": "Order quantity is 37.5% below typical order quantity for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "200 days",
+        "reference_value": "210 days",
+        "why_noteworthy": "Delivery lag is 10 days shorter than market reference for this SKU."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "2.54 days",
+        "reference_value": "1.61-4.76 days",
+        "why_noteworthy": "Approval lag is within historical range for similar orders."
+      }
+    ]
+  },
+  "PO-2024-0020": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$4.9619",
+        "reference_value": "$4.4839",
+        "why_noteworthy": "Unit price exceeds market reference by 11%, indicating potential cost inefficiency."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "19",
+        "reference_value": "10",
+        "why_noteworthy": "Order quantity is 90% higher than typical market order size for this SKU."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-020",
+        "reference_value": "Established supplier with prior orders (e.g., SC0915 DevBoard)",
+        "why_noteworthy": "Supplier S-020 has historical orders for similar components, confirming legitimacy."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "1.63 days",
+        "reference_value": "1.17–2.79 days (historical range)",
+        "why_noteworthy": "Approval lag falls within historical range for similar orders, indicating typical process."
+      }
+    ]
+  },
+  "PO-2024-0174": {
+    "noteworthy_features": [
+      {
+        "feature": "Supplier",
+        "current_value": "S-026",
+        "reference_value": "S-003, S-030 (historical SC0915 suppliers)",
+        "why_noteworthy": "New supplier with no prior SC0915 history, despite prior use for other SKUs"
+      },
+      {
+        "feature": "Unit price",
+        "current_value": "$3.7286",
+        "reference_value": "$4.0000 (market reference)",
+        "why_noteworthy": "Slightly lower than market reference but higher than historical SC0915 orders"
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "98 days",
+        "reference_value": "112 days (market reference)",
+        "why_noteworthy": "Shorter than market reference but within historical SC0915 delivery ranges"
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "4",
+        "reference_value": "5 (market reference)",
+        "why_noteworthy": "Matches historical SC0915 order quantities but slightly below market median"
+      }
+    ]
+  },
+  "PO-2024-0402": {
+    "noteworthy_features": [
+      {
+        "feature": "Supplier",
+        "current_value": "S-028",
+        "reference_value": "S-023, S-025, S-029, S-020, S-003",
+        "why_noteworthy": "New supplier with no prior history in historical orders."
+      },
+      {
+        "feature": "Unit price",
+        "current_value": "$5.7574",
+        "reference_value": "$4.5000",
+        "why_noteworthy": "Unit price exceeds market reference by 28%, higher than historical median."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "125 days",
+        "reference_value": "90 days",
+        "why_noteworthy": "Delivery lag significantly exceeds market reference and historical orders."
+      },
+      {
+        "feature": "Purchase note",
+        "current_value": "Supplier S-028 had suspended operation and now reopen",
+        "reference_value": "No mention of supplier status in historical orders",
+        "why_noteworthy": "Unusual supplier status disclosure with no prior historical context."
+      }
+    ]
+  },
+  "PO-2024-0106": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$17.5454",
+        "reference_value": "$15.5745",
+        "why_noteworthy": "Unit price exceeds market reference by 13% and historical S-007 prices by 330%."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "2",
+        "reference_value": "3",
+        "why_noteworthy": "Quantity is 33% below typical market order quantity and historical S-007 orders."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "29 days",
+        "reference_value": "23 days",
+        "why_noteworthy": "Delivery lag exceeds market reference by 29% but is significantly shorter than S-007's historical 77-day lead time."
+      },
+      {
+        "feature": "Purchase note",
+        "current_value": "Order 2 MG-588 pcb to support R-ENG-01's project, expected will be delivery in 17/4.",
+        "reference_value": "Clear delivery timeline",
+        "why_noteworthy": "Purchase note contains ambiguous phrasing with unclear delivery timeframe calculation."
+      }
+    ]
+  },
+  "PO-2024-0418": {
+    "noteworthy_features": [
+      {
+        "feature": "Supplier",
+        "current_value": "S-028",
+        "reference_value": "S-001 through S-025",
+        "why_noteworthy": "New supplier outside routine range, requires verification of reliability and compliance."
+      },
+      {
+        "feature": "Unit price",
+        "current_value": "$4.7265",
+        "reference_value": "$4.5000",
+        "why_noteworthy": "Unit price exceeds market reference by 4.7%, slightly higher than historical median."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "94 days",
+        "reference_value": "90 days",
+        "why_noteworthy": "Lead time exceeds typical market reference by 4 days, slightly extended from historical orders."
+      },
+      {
+        "feature": "Purchase note",
+        "current_value": "Supplier had suspended operation",
+        "reference_value": "No mention of supplier status in historical notes",
+        "why_noteworthy": "Note highlights supplier's suspended history, raising potential compliance or quality concerns."
+      }
+    ]
+  },
+  "PO-2024-0163": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$17.8414",
+        "reference_value": "$15.5745",
+        "why_noteworthy": "Unit price exceeds market reference by 15%, higher than historical orders for this SKU."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "2",
+        "reference_value": "3",
+        "why_noteworthy": "Quantity is 1 unit less than market reference but matches historical orders for this SKU."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "0.69 days",
+        "reference_value": "1.62 days",
+        "why_noteworthy": "Approval lag is significantly faster than historical orders for this supplier."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "19 days",
+        "reference_value": "23 days",
+        "why_noteworthy": "Delivery lag is slightly shorter than market reference but aligns with historical orders for this SKU."
+      }
+    ]
+  },
+  "PO-2024-0033": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$0.1012",
+        "reference_value": "$0.1027",
+        "why_noteworthy": "Unit price slightly lower than market typical but within historical range."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "103 days",
+        "reference_value": "112 days",
+        "why_noteworthy": "Delivery lag close to market reference but slightly shorter than historical orders."
+      },
+      {
+        "feature": "Purchase note",
+        "current_value": "request are approve",
+        "reference_value": "typical grammatical correctness",
+        "why_noteworthy": "Purchase note contains grammatical error in verb tense."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "2.07 days",
+        "reference_value": "1.82–2.66 days",
+        "why_noteworthy": "Approval lag within historical range for similar orders."
+      }
+    ]
+  },
+  "PO-2024-0353": {
+    "noteworthy_features": [
+      {
+        "feature": "Supplier",
+        "current_value": "S-025",
+        "reference_value": "S-001, S-023",
+        "why_noteworthy": "New supplier ID not previously used for B4B-XH-A connectors."
+      },
+      {
+        "feature": "Unit price",
+        "current_value": "$0.0846",
+        "reference_value": "$0.1027",
+        "why_noteworthy": "Unit price is 17% below market reference for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "133 days",
+        "reference_value": "112 days",
+        "why_noteworthy": "Lead time exceeds market reference but aligns with historical maximum."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "2.14 days",
+        "reference_value": "1.47–3.69 days",
+        "why_noteworthy": "Approval lag falls within historical range for small orders."
+      }
+    ]
+  },
+  "PO-2024-0278": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$2.7425",
+        "reference_value": "$4.0000",
+        "why_noteworthy": "Significantly lower than market reference, indicating potential undervaluation or supplier negotiation."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "4",
+        "reference_value": "5",
+        "why_noteworthy": "Slightly below typical order quantity but within historical range for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "99 days",
+        "reference_value": "112 days",
+        "why_noteworthy": "Shorter than market reference but aligns with historical delivery lags for this supplier."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-007",
+        "reference_value": "S-007 (historical unit price: $4.7878)",
+        "why_noteworthy": "Deviation from S-007's historical pricing pattern for this SKU."
+      }
+    ]
+  },
+  "PO-2024-0211": {
+    "noteworthy_features": [
+      {
+        "feature": "Quantity",
+        "current_value": "162",
+        "reference_value": "3",
+        "why_noteworthy": "Quantity is 54x higher than historical median for MG-588 orders."
+      },
+      {
+        "feature": "Unit Price",
+        "current_value": "$15.3427",
+        "reference_value": "$15.5745",
+        "why_noteworthy": "Unit price is 1.5% below market reference but 1.5% above historical median."
+      },
+      {
+        "feature": "Delivery Lag",
+        "current_value": "18 days",
+        "reference_value": "23 days",
+        "why_noteworthy": "Lead time is 5 days shorter than market reference but within historical range."
+      },
+      {
+        "feature": "Purchase Note",
+        "current_value": "temporary account request for imports",
+        "reference_value": "no mention of account requests in historical notes",
+        "why_noteworthy": "Includes unusual mention of temporary import account request for supplier."
+      }
+    ]
+  },
+  "PO-2024-0270": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$8.5169",
+        "reference_value": "$8.8036",
+        "why_noteworthy": "Unit price is slightly lower than market reference, but within typical range."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "31 days",
+        "reference_value": "38 days",
+        "why_noteworthy": "Delivery lag is shorter than market reference, but aligns with supplier's stated lead time."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "5",
+        "reference_value": "8",
+        "why_noteworthy": "Quantity is below market reference but matches historical order for same SKU."
+      },
+      {
+        "feature": "Supplier profile",
+        "current_value": "Long shipping time, order 3 months in advance",
+        "reference_value": "Standard lead time of 38 days",
+        "why_noteworthy": "Supplier's stated lead time conflicts with current order's shorter delivery lag."
+      }
+    ]
+  },
+  "PO-2024-0030": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$4.7782",
+        "reference_value": "$4.0631",
+        "why_noteworthy": "Unit price exceeds market reference by 17.6%, which is higher than typical historical orders for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "139 days",
+        "reference_value": "210 days",
+        "why_noteworthy": "Delivery lag is shorter than market reference, but aligns with historical orders for this supplier."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-020",
+        "reference_value": "S-001 through S-025",
+        "why_noteworthy": "Supplier S-020 has a consistent history of orders, including previous purchases of similar components."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "2.31 days",
+        "reference_value": "1.80 to 3.07 days",
+        "why_noteworthy": "Approval lag falls within the typical range for this procurement team's historical performance."
+      }
+    ]
+  },
+  "PO-2024-0051": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$4.9988",
+        "reference_value": "$4.0631",
+        "why_noteworthy": "Unit price exceeds market reference by 23%, indicating potential cost inefficiency."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "23",
+        "reference_value": "8",
+        "why_noteworthy": "Quantity significantly exceeds typical order size for this SKU, suggesting potential over-purchasing."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "221 days",
+        "reference_value": "210 days",
+        "why_noteworthy": "Delivery lag slightly exceeds market reference but aligns with historical long-lead-time orders."
+      },
+      {
+        "feature": "Purchase note",
+        "current_value": "shopping fees",
+        "reference_value": "none in historical orders",
+        "why_noteworthy": "Mentions shopping fees not seen in prior orders, potentially indicating additional cost transparency."
+      }
+    ]
+  },
+  "PO-2024-0456": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$5.6449",
+        "reference_value": "$4.5000",
+        "why_noteworthy": "Unit price is 25% higher than market reference, indicating potential cost inefficiency."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "10",
+        "reference_value": "5",
+        "why_noteworthy": "Quantity is double the market typical order quantity, suggesting possible over-purchasing."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "134 days",
+        "reference_value": "90 days",
+        "why_noteworthy": "Delivery lag aligns with supplier S-001's known long lead time, consistent with historical patterns."
+      },
+      {
+        "feature": "Approver",
+        "current_value": "A-PROC-01",
+        "reference_value": "A-PROC-01",
+        "why_noteworthy": "Approver matches the correct level for orders below USD 5,000, indicating proper authorization."
+      }
+    ]
+  },
+  "PO-2024-0275": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$5.1270",
+        "reference_value": "$4.5000",
+        "why_noteworthy": "Unit price exceeds market reference by 14%, indicating potential overpayment."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "2",
+        "reference_value": "5",
+        "why_noteworthy": "Quantity is significantly below typical order size for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "95 days",
+        "reference_value": "90 days",
+        "why_noteworthy": "Delivery lag exceeds typical market lead time by 5 days."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-025",
+        "reference_value": "S-023",
+        "why_noteworthy": "Supplier differs from historical vendors for the same SKU, raising questions about cost or sourcing rationale."
+      }
+    ]
+  },
+  "PO-2024-0096": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$0.1004",
+        "reference_value": "$0.1163",
+        "why_noteworthy": "Unit price is 14% lower than market reference, indicating potential undervaluation."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "65",
+        "reference_value": "80",
+        "why_noteworthy": "Order quantity is 25% below typical historical order size for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "96 days",
+        "reference_value": "114 days",
+        "why_noteworthy": "Lead time is 16% shorter than market reference, deviating from typical expectations."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "1.42 days",
+        "reference_value": "1.45 days",
+        "why_noteworthy": "Approval lag aligns closely with historical median for this approver and SKU."
+      }
+    ]
+  },
+  "PO-2024-0463": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$2.8918",
+        "reference_value": "$4.0631",
+        "why_noteworthy": "Unit price is significantly lower than market reference, indicating potential undervaluation or negotiation success."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "10",
+        "reference_value": "8",
+        "why_noteworthy": "Quantity exceeds typical historical order size by 25%, suggesting possible project-specific demand."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "250 days",
+        "reference_value": "210 days",
+        "why_noteworthy": "Lead time exceeds market reference by 19%, aligning with historical orders for this supplier."
+      },
+      {
+        "feature": "Supplier",
+        "current_value": "S-007",
+        "reference_value": "Established supplier with prior orders (Order 5)",
+        "why_noteworthy": "Supplier has consistent historical engagement, confirming reliability for this SKU."
+      }
+    ]
+  },
+  "PO-2024-0331": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$5.7962",
+        "reference_value": "$4.5000",
+        "why_noteworthy": "Unit price exceeds market reference by 28%, indicating potential pricing deviation."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "169",
+        "reference_value": "5",
+        "why_noteworthy": "Quantity is 33 times higher than typical market orders, suggesting bulk procurement anomaly."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "99 days",
+        "reference_value": "90 days",
+        "why_noteworthy": "Lead time exceeds market reference by 1 day, slightly deviating from typical supplier performance."
+      },
+      {
+        "feature": "Approver",
+        "current_value": "A-PROC-01",
+        "reference_value": "A-PROC-01 (for < $1,000 orders)",
+        "why_noteworthy": "Approver aligns with tiered threshold for orders below $1,000, consistent with standard protocol."
+      }
+    ]
+  },
+  "PO-2024-0340": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$4.3602",
+        "reference_value": "$4.0631",
+        "why_noteworthy": "Unit price exceeds market reference by 7.4%, indicating potential pricing deviation."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "25",
+        "reference_value": "8",
+        "why_noteworthy": "Quantity significantly higher than historical typical order size for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "108 days",
+        "reference_value": "210 days",
+        "why_noteworthy": "Delivery lag substantially shorter than market reference lead time for this SKU."
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "0.02 days",
+        "reference_value": "1.8-4.7 days",
+        "why_noteworthy": "Approval lag unusually short compared to historical typical ranges for similar orders."
+      }
+    ]
+  },
+  "PO-2024-0493": {
+    "noteworthy_features": [
+      {
+        "feature": "Supplier",
+        "current_value": "S-028",
+        "reference_value": "S-028 (newly onboarded with limited operational history)",
+        "why_noteworthy": "Supplier has suspended operations history and requires observation"
+      },
+      {
+        "feature": "Unit price",
+        "current_value": "$0.1649",
+        "reference_value": "$0.1163",
+        "why_noteworthy": "Unit price exceeds market reference by 41.8%"
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "290",
+        "reference_value": "80",
+        "why_noteworthy": "Quantity exceeds market typical by 262.5%"
+      },
+      {
+        "feature": "Approval lag",
+        "current_value": "1.22 days",
+        "reference_value": "1.54-3.78 days",
+        "why_noteworthy": "Approval lag falls within historical range for small orders"
+      }
+    ]
+  },
+  "PO-2024-0029": {
+    "noteworthy_features": [
+      {
+        "feature": "Unit price",
+        "current_value": "$5.4168",
+        "reference_value": "$4.4839",
+        "why_noteworthy": "Unit price exceeds market reference by 21%, indicating potential overpayment."
+      },
+      {
+        "feature": "Quantity",
+        "current_value": "5",
+        "reference_value": "10",
+        "why_noteworthy": "Order quantity is 50% below typical market order size for this SKU."
+      },
+      {
+        "feature": "Delivery lag",
+        "current_value": "145 days",
+        "reference_value": "120 days",
+        "why_noteworthy": "Lead time exceeds market reference by 21 days, suggesting potential supply chain delays."
+      },
+      {
+        "feature": "Approver",
+        "current_value": "A-PROC-01",
+        "reference_value": "A-PROC-01",
+        "why_noteworthy": "Approver matches tiered threshold for orders below $1,000, consistent with historical patterns."
+      }
+    ]
+  }
+}

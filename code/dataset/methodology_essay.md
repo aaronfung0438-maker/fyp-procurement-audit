@@ -359,14 +359,16 @@ Output：裁決 / 4 條特徵             Input：訂單 + (G2/G3) 凍結 Layer 
 | 模擬組別 | G1-student、G1-auditor、G2-student、G3-student |
 | G1 採用雙 persona | Student + Auditor，測試人口統計描述 persona 的效應差異 |
 | G2、G3 | 僅 Student persona（主要比較條件）|
-| 確定性跑法 | Temperature = 0.0，N = 1（建立可重現基線）|
-| 隨機性跑法 | Temperature = 0.5，N = 10（模擬群體內個體差異）|
+| 確定性跑法 | Temperature = 0.0，N = 1（建立可重現基線；mechanism verification）|
+| 隨機性跑法 | Temperature = 0.5，N = 10（LLM 行為對 sampling 隨機性的敏感度估計；robustness check）|
 | 系統提示 | Persona 句 + 完整受試者說明手冊 markdown |
 | 使用者提示 | Section A + Section B + Section E + (G2/G3) AI 面板（以 webapp 一致的 markdown 格式）|
 | 輸出格式 | JSON：`{"judgment": "normal"/"suspicious", "confidence": 1–7, "reasoning": "<一句話>"}` |
 | Thinking mode | 啟用；`<think>` 區塊後處理剝除 |
 | Token 預算 | `num_predict = 2048` |
 | 標籤對齊 | LLM 的 "suspicious" 對應 ground truth 的 "anomaly"，用於計算 `correct` 欄位 |
+
+**T = 0 與 T = 0.5 的角色定位（誠實聲明）。** Stage 4 AI 工具使用 T = 0 的理由是實驗控制：每位受試者必須看到完全相同的 AI 輸出，確定性溫度是凍結輸出的基本要求。LLM 模擬同時跑 T = 0 與 T = 0.5 則服務於兩個不同的目的——T = 0 提供「此模型面對此 prompt 的最可能反應」（mechanism verification），確保結果可被任何使用相同程式碼與相同 Qwen3-8B 模型版本的研究者完全重現；T = 0.5 跑 10 次則提供 LLM 行為對 sampling 隨機性的敏感度估計（robustness check），以便計算 std 與拔靴法 CI。**本研究明確不主張 T = 0.5 的變異等同於人類受試者間的個體差異**：真人受試者的差異來自個性、經驗、疲勞、注意力等認知因素，而 LLM 的 stochastic 變異僅來自 token sampling 的隨機性，兩者在認知來源上並不對等。LLM 模擬定位為**計算參考基線**（computational reference point），並非人類行為的替代或預測。
 
 ### LLM 模擬的限制
 
@@ -377,6 +379,10 @@ Output：裁決 / 4 條特徵             Input：訂單 + (G2/G3) 凍結 Layer 
 **L12 — Qwen3-8B 的採購領域先驗知識。** 模型預訓練時可能已學習一般採購舞弊術語，使 LLM-G1-student persona 具有真實 naïve 學生所沒有的隱性領域知識優勢。LLM-G1-student 的準確率應詮釋為「具備一般語言知識的合成代理」，而非真人 naïve 學生的代理。
 
 **L13 — 一句話 persona 屬人口統計描述等級。** 模擬無法捕捉風險容忍度、認知風格或對 AI 的先驗信任等個體差異。所有組層級比較均有效；個體層級推論則不適用。
+
+**L14 — 兩階段校準導致 G2 與 G3 的 AI 工具校準時點略有差異。** Stage 4 的 AI 工具校準（將公司供應商範圍、核准門檻、「多個弱訊號才視為可疑」的判斷準則明確加入 system prompt）在 G2 與 G3 上是分階段加入的：先在 G2 加入並重跑，後續才加入 G3 並重跑。最終所有報告的數字皆來自完成校準後生成的凍結輸出，但這個迭代過程在 commit 歷史中可見。研究結論基於最終一致校準後的版本。
+
+**L15 — Temperature noise 不等於人類個體差異。** T = 0.5 跑 10 次提供的 std 與 CI 反映的是 Qwen3-8B 在 token sampling 隨機性下的行為分布，**並非**對「若有 10 位人類受試者會如何分布」的預測。真人差異的來源（個性、經驗、認知負荷）與 LLM 差異的來源（softmax sampling）在機制上不可類比。論文中報告的 stochastic 結果應解讀為「此 LLM 條件下的行為穩健性」，而非「人類受試者群體變異的估計」。
 
 ---
 
@@ -436,6 +442,12 @@ Output：裁決 / 4 條特徵             Input：訂單 + (G2/G3) 凍結 Layer 
 **Q6：您自行定義 ground truth，這是否形成循環——AI 被訓練來偵測您注入的確切樣態？**
 
 Ground truth（`apply_anomaly()` 中的突變合約）定義了資料中**被改變了什麼**。偵測任務——無論是人類還是 AI——是從**可觀察的訂單欄位**推斷是否有所改變，在不知曉突變合約的情況下進行。這類似於使用人工誘發條件的醫學研究：實驗者知道疾病是誘發的，但診斷測試必須僅從症狀推斷。循環性只有在異常偵測演算法使用注入規則作為特徵時才會出現——但 Stage 3 僅從原始數值特徵計算 Mahalanobis 距離，AI 使用原始訂單欄位加上 RAG，兩者均不編碼注入邏輯。八類異常類型以已發表的舞弊分類法（PACE，Westerski et al., 2021）為基礎，而非臨時發明，進一步將 ground truth 設計與偵測機制分離。
+
+---
+
+**Q7：您報告的 T = 0.5 stochastic 結果可以視為對人類受試者群體變異的模擬嗎？**
+
+不可以。這是 LLM 模擬最常被誤解的一點，本研究刻意明確澄清。T = 0.5 的隨機性僅來自 Qwen3-8B 在 token sampling 階段的 softmax 抽樣過程，跑 10 次得到的變異反映「同一模型對同一 prompt 在不同隨機種子下的行為分佈」。真人受試者的差異則來自個性、領域經驗、認知負荷、注意力等高層次認知因素，這兩種變異來源在機制上**完全不對等**。論文中的 LLM stochastic 結果應解讀為「Qwen3-8B 在此實驗條件下的 robustness check」——告訴我們此模型的判斷是否對 sampling 隨機性穩定——而**不是**「若有 10 位人類受試者其表現會如何分佈」的預測。後者必須等待真人實驗的資料才能討論。LLM 模擬被定位為**計算參考基線**（computational reference point），不是人類行為的替代或預測模型，這在 §3.5.4 與限制 L13、L15 中明確聲明。
 
 ---
 
@@ -548,6 +560,20 @@ You are an internal procurement auditor at a 30-person electronics company.
 Review the purchase order below and select the 4 MOST NOTEWORTHY features
 of this order by comparing it against the provided historical orders and
 the SKU market reference.
+
+CALIBRATION CONTEXT (judgment standards used at this company):
+- The company routinely uses suppliers S-001 through S-025. Other supplier
+  IDs represent newer or one-off vendors -- unusual but not automatically
+  worth flagging; a new supplier with otherwise typical fields can be
+  legitimate.
+- Approval thresholds are tiered: orders below USD 1,000 are signed off
+  by A-PROC-01 / A-PROC-02; USD 1,000-5,000 by A-CTO; above USD 5,000 by
+  A-CEO. A wrong-level approver on a large order is a notable deviation.
+- Most orders in this company are routine and normal. A SINGLE small
+  difference (e.g., unit price 1.2x median, slightly fast approval,
+  quantity moderately above median) is usually explainable on its own
+  and does NOT need to be highlighted as a deviation. Reserve "deviation"
+  framing for genuinely unusual values.
 
 A "noteworthy" feature is any field or aspect that an experienced auditor
 would point out when describing this order to a colleague. It can be:

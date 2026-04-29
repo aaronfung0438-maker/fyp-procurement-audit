@@ -343,6 +343,22 @@ Review the purchase order below and select the 4 MOST NOTEWORTHY features
 of this order by comparing it against the provided historical orders and
 the SKU market reference.
 
+CALIBRATION CONTEXT (judgment standards used at this company):
+- The company routinely uses suppliers S-001 through S-025. Other supplier
+  IDs represent newer or one-off vendors -- unusual but not automatically
+  worth flagging; a new supplier with otherwise typical fields can be
+  legitimate.
+- Approval thresholds are tiered: orders below USD 1,000 are signed off
+  by A-PROC-01 / A-PROC-02; USD 1,000-5,000 by A-CTO; above USD 5,000 by
+  A-CEO. A wrong-level approver on a large order is a notable deviation.
+- Most orders in this company are routine and normal. A SINGLE small
+  difference (e.g., unit price 1.2x median, slightly fast approval,
+  quantity moderately above median) is usually explainable on its own
+  and does NOT need to be highlighted as a deviation. Reserve "deviation"
+  framing for genuinely unusual values (e.g., unit price > 2.5x median,
+  missing approver on a large order, total just below an approval
+  threshold, supplier with no prior history combined with other oddities).
+
 A "noteworthy" feature is any field or aspect that an experienced auditor
 would point out when describing this order to a colleague. It can be:
   (a) a DEVIATION from typical patterns (e.g., unit price 3x higher than
@@ -478,7 +494,8 @@ def find_dataset_excel() -> Path:
 
 # ── Main run ───────────────────────────────────────────────────────────────────
 def run(exp_path: Path, dataset_path: Path, label: str = "exp",
-        use_comp_ref: bool = True, skip_g3: bool = False) -> None:
+        use_comp_ref: bool = True, skip_g3: bool = False,
+        skip_g2: bool = False) -> None:
     print("\n=== Stage 4b -- Freeze LLM Outputs ===")
     print(f"Question set   : {exp_path}")
     print(f"Dataset        : {dataset_path}")
@@ -523,10 +540,11 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
     }
 
     def _flush() -> None:
-        paths["g2"].write_text(dumps(g2_verdicts), encoding="utf-8")
+        if not skip_g2:
+            paths["g2"].write_text(dumps(g2_verdicts), encoding="utf-8")
+            paths["shadow"].write_text(dumps(shadow_g2), encoding="utf-8")
         if not skip_g3:
             paths["g3"].write_text(dumps(g3_evidence), encoding="utf-8")
-        paths["shadow"].write_text(dumps(shadow_g2), encoding="utf-8")
         paths["log"].write_text(dumps(gen_log),     encoding="utf-8")
 
     # Per-question loop
@@ -566,19 +584,23 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
         entry: dict = {"po_id": po_id, "rag_retrieved": n_retrieved, "rag_ms": rag_ms}
 
         # 4. G2: verdict + one-sentence reason
-        t0 = time.time()
-        try:
-            g2_result, g2_retries = generate_g2(order_card, rag_snippet)
-            g2_ms = int((time.time() - t0) * 1000)
-            g2_verdicts[po_id] = g2_result
-            entry.update({"g2_ok": True, "g2_retries": g2_retries, "g2_ms": g2_ms})
-            print(f"  G2: {g2_result['judgment']}  ({g2_ms} ms, retries={g2_retries})")
-        except RuntimeError as e:
-            g2_ms = int((time.time() - t0) * 1000)
-            g2_verdicts[po_id] = dict(G2_FALLBACK)
-            entry.update({"g2_ok": False, "g2_error": str(e), "g2_ms": g2_ms,
-                          "g2_fallback_used": True})
-            print(f"  G2 FAILED -> fallback inserted: {e}")
+        if not skip_g2:
+            t0 = time.time()
+            try:
+                g2_result, g2_retries = generate_g2(order_card, rag_snippet)
+                g2_ms = int((time.time() - t0) * 1000)
+                g2_verdicts[po_id] = g2_result
+                entry.update({"g2_ok": True, "g2_retries": g2_retries, "g2_ms": g2_ms})
+                print(f"  G2: {g2_result['judgment']}  ({g2_ms} ms, retries={g2_retries})")
+            except RuntimeError as e:
+                g2_ms = int((time.time() - t0) * 1000)
+                g2_verdicts[po_id] = dict(G2_FALLBACK)
+                entry.update({"g2_ok": False, "g2_error": str(e), "g2_ms": g2_ms,
+                              "g2_fallback_used": True})
+                print(f"  G2 FAILED -> fallback inserted: {e}")
+        else:
+            entry.update({"g2_skipped": True})
+            print("  G2: SKIPPED (--skip-g2); will reuse latest existing g2_verdicts_*.json")
 
         # 5. G3: 4 structured suspicious features
         if not skip_g3:
@@ -600,17 +622,20 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
             print("  G3: SKIPPED (--skip-g3); will reuse latest existing g3_evidence_*.json")
 
         # 6. Shadow G2 (same prompt as G2; logged for AOR computation; never shown to participants)
-        t0 = time.time()
-        try:
-            sg_result, sg_retries = generate_g2(order_card, rag_snippet)
-            sg_ms = int((time.time() - t0) * 1000)
-            shadow_g2[po_id] = sg_result
-            entry.update({"shadow_g2_ok": True, "shadow_g2_retries": sg_retries, "shadow_g2_ms": sg_ms})
-        except RuntimeError as e:
-            sg_ms = int((time.time() - t0) * 1000)
-            shadow_g2[po_id] = dict(G2_FALLBACK)
-            entry.update({"shadow_g2_ok": False, "shadow_g2_error": str(e), "shadow_g2_ms": sg_ms,
-                          "shadow_g2_fallback_used": True})
+        if not skip_g2:
+            t0 = time.time()
+            try:
+                sg_result, sg_retries = generate_g2(order_card, rag_snippet)
+                sg_ms = int((time.time() - t0) * 1000)
+                shadow_g2[po_id] = sg_result
+                entry.update({"shadow_g2_ok": True, "shadow_g2_retries": sg_retries, "shadow_g2_ms": sg_ms})
+            except RuntimeError as e:
+                sg_ms = int((time.time() - t0) * 1000)
+                shadow_g2[po_id] = dict(G2_FALLBACK)
+                entry.update({"shadow_g2_ok": False, "shadow_g2_error": str(e), "shadow_g2_ms": sg_ms,
+                              "shadow_g2_fallback_used": True})
+        else:
+            entry.update({"shadow_g2_skipped": True})
 
         gen_log.append(entry)
         _flush()
@@ -624,7 +649,9 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
     missing_g2_pid = all_ids - set(g2_verdicts)
     missing_g3_pid = all_ids - set(g3_evidence)
 
-    if missing_g2_pid:
+    if skip_g2:
+        print(f"  G2   : SKIPPED (--skip-g2); previous g2_verdicts_*.json remains current.")
+    elif missing_g2_pid:
         print(f"  ERROR: G2 has no record for {len(missing_g2_pid)} question(s): {sorted(missing_g2_pid)}")
     elif g2_fallbacks:
         print(f"  WARN : G2 fallback used for {len(g2_fallbacks)}/{n_qs} question(s): {sorted(g2_fallbacks)}")
@@ -640,7 +667,9 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
     else:
         print(f"  G3   : all {n_qs} questions passed (no fallback) -- each has exactly 4 features")
 
-    if sg_fallbacks:
+    if skip_g2:
+        print(f"  Shadow: SKIPPED (--skip-g2); previous shadow_g2_for_g3_*.json remains current.")
+    elif sg_fallbacks:
         print(f"  WARN : shadow_g2 fallback used for {len(sg_fallbacks)}/{n_qs} question(s)")
 
     # Final write (already flushed each loop iteration; ensure last state on disk)
@@ -649,6 +678,8 @@ def run(exp_path: Path, dataset_path: Path, label: str = "exp",
     print("\nOutput files:")
     for k, p in paths.items():
         if k == "g3" and skip_g3:
+            continue
+        if k in ("g2", "shadow") and skip_g2:
             continue
         print(f"  {p}")
 
@@ -671,26 +702,33 @@ def acceptance_report(label: str | None = None) -> None:
     ok_g3 = sum(1 for e in data if e.get("g3_ok"))
     ok_sg = sum(1 for e in data if e.get("shadow_g2_ok"))
     skipped_g3 = all(e.get("g3_skipped") for e in data)
+    skipped_g2 = all(e.get("g2_skipped") for e in data)
     print(f"\n=== Acceptance report: {logs[-1].name} ===")
-    print(f"  G2       : {ok_g2}/{n} passed")
+    if skipped_g2:
+        print(f"  G2       : SKIPPED (not regenerated; previous file remains current)")
+    else:
+        print(f"  G2       : {ok_g2}/{n} passed")
     if skipped_g3:
         print(f"  G3       : SKIPPED (not regenerated; previous file remains current)")
     else:
         print(f"  G3       : {ok_g3}/{n} passed")
-    print(f"  Shadow G2: {ok_sg}/{n} passed")
-    if skipped_g3:
+    if skipped_g2:
+        print(f"  Shadow G2: SKIPPED (not regenerated; previous file remains current)")
+    else:
+        print(f"  Shadow G2: {ok_sg}/{n} passed")
+    skipped_g2 = all(e.get("g2_skipped") for e in data)
+    if skipped_g2:
+        failures = [e for e in data if not e.get("g3_ok") and not e.get("g3_skipped")]
+    elif skipped_g3:
         failures = [e for e in data if not e.get("g2_ok")]
     else:
         failures = [e for e in data if not e.get("g2_ok") or not e.get("g3_ok")]
     if failures:
         print("  Failed questions:")
         for e in failures:
-            g2s = "OK" if e.get("g2_ok") else "FAIL"
-            if skipped_g3:
-                print(f"    {e['po_id']}  G2={g2s}  G3=SKIPPED")
-            else:
-                g3s = "OK" if e.get("g3_ok") else "FAIL"
-                print(f"    {e['po_id']}  G2={g2s}  G3={g3s}")
+            g2s = "SKIPPED" if e.get("g2_skipped") else ("OK" if e.get("g2_ok") else "FAIL")
+            g3s = "SKIPPED" if e.get("g3_skipped") else ("OK" if e.get("g3_ok") else "FAIL")
+            print(f"    {e['po_id']}  G2={g2s}  G3={g3s}")
     else:
         print("  All passed. Ready for Stage 5.")
 
@@ -715,6 +753,11 @@ def main() -> None:
                              "Use when only the G2 system prompt has changed; "
                              "the previous g3_evidence_*.json remains the latest "
                              "and is picked up by data_loader's glob.")
+    parser.add_argument("--skip-g2",       action="store_true",
+                        help="Only regenerate G3 evidence (skip G2 verdict + shadow_g2). "
+                             "Use when only the G3 system prompt has changed; "
+                             "the previous g2_verdicts_*.json and shadow_g2_*.json "
+                             "remain the latest.")
     parser.add_argument("--report",        action="store_true",
                         help="Print acceptance report only; do not regenerate")
     args = parser.parse_args()
@@ -727,9 +770,13 @@ def main() -> None:
     exp_path     = args.exp_input     or find_latest(STAGE3_DIR, default_pattern)
     dataset_path = args.dataset_input or find_dataset_excel()
 
+    if args.skip_g2 and args.skip_g3:
+        print("Both --skip-g2 and --skip-g3 set; nothing to regenerate. Exiting.")
+        return
+
     run(exp_path=exp_path, dataset_path=dataset_path,
         label=args.label, use_comp_ref=not args.no_comp_ref,
-        skip_g3=args.skip_g3)
+        skip_g3=args.skip_g3, skip_g2=args.skip_g2)
     acceptance_report(label=args.label)
 
 

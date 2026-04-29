@@ -1,0 +1,322 @@
+[
+  {
+    "po_id": "PO-2024-0375",
+    "rag_retrieved": 5,
+    "rag_ms": 4459,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 19741,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0319",
+    "rag_retrieved": 5,
+    "rag_ms": 3849,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 20131,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0326",
+    "rag_retrieved": 5,
+    "rag_ms": 3772,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 30654,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0179",
+    "rag_retrieved": 5,
+    "rag_ms": 3836,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 86959,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0306",
+    "rag_retrieved": 5,
+    "rag_ms": 4055,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 1,
+    "g3_ms": 610840,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0298",
+    "rag_retrieved": 5,
+    "rag_ms": 4029,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 110983,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0088",
+    "rag_retrieved": 5,
+    "rag_ms": 4065,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 1,
+    "g3_ms": 893168,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0022",
+    "rag_retrieved": 5,
+    "rag_ms": 3864,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 86868,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0140",
+    "rag_retrieved": 5,
+    "rag_ms": 4035,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 55423,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0181",
+    "rag_retrieved": 5,
+    "rag_ms": 4027,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 46908,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0359",
+    "rag_retrieved": 5,
+    "rag_ms": 3981,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 59764,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0020",
+    "rag_retrieved": 5,
+    "rag_ms": 3992,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 88990,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0174",
+    "rag_retrieved": 5,
+    "rag_ms": 3957,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 89138,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0402",
+    "rag_retrieved": 5,
+    "rag_ms": 4384,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 59247,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0106",
+    "rag_retrieved": 5,
+    "rag_ms": 4031,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 1,
+    "g3_ms": 719206,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0418",
+    "rag_retrieved": 5,
+    "rag_ms": 4020,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 42948,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0163",
+    "rag_retrieved": 5,
+    "rag_ms": 4017,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 122098,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0033",
+    "rag_retrieved": 5,
+    "rag_ms": 4045,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 94685,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0353",
+    "rag_retrieved": 5,
+    "rag_ms": 3987,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 94519,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0278",
+    "rag_retrieved": 5,
+    "rag_ms": 4017,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 184526,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0211",
+    "rag_retrieved": 5,
+    "rag_ms": 4015,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 48325,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0270",
+    "rag_retrieved": 5,
+    "rag_ms": 3948,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 127255,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0030",
+    "rag_retrieved": 5,
+    "rag_ms": 3996,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 189009,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0051",
+    "rag_retrieved": 5,
+    "rag_ms": 4033,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 128328,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0456",
+    "rag_retrieved": 5,
+    "rag_ms": 3968,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 61631,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0275",
+    "rag_retrieved": 5,
+    "rag_ms": 3932,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 66542,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0096",
+    "rag_retrieved": 5,
+    "rag_ms": 3927,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 90871,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0463",
+    "rag_retrieved": 5,
+    "rag_ms": 3978,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 52127,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0331",
+    "rag_retrieved": 5,
+    "rag_ms": 4113,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 100233,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0340",
+    "rag_retrieved": 5,
+    "rag_ms": 3967,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 120010,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0493",
+    "rag_retrieved": 5,
+    "rag_ms": 3982,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 1,
+    "g3_ms": 746435,
+    "shadow_g2_skipped": true
+  },
+  {
+    "po_id": "PO-2024-0029",
+    "rag_retrieved": 5,
+    "rag_ms": 4098,
+    "g2_skipped": true,
+    "g3_ok": true,
+    "g3_retries": 0,
+    "g3_ms": 60050,
+    "shadow_g2_skipped": true
+  }
+]
