@@ -118,7 +118,7 @@ class SheetsClient:
         """Append one response row to the ``sessions`` sheet."""
         ws = self.worksheet(SESSIONS_SHEET)
         ordered = [row.get(col, "") for col in SESSIONS_HEADER]
-        _retry(lambda: ws.append_row(ordered, value_input_option="USER_ENTERED"))
+        _retry(lambda: ws.append_row(ordered, value_input_option="USER_ENTERED", table_range="A1"))
 
 
 def _now_iso() -> str:
